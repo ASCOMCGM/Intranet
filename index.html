@@ -1,0 +1,2136 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Intranet CGM-SP</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #0066cc;
+            --primary-dark: #0052a3;
+            --primary-light: #4d94ff;
+            --secondary: #00a896;
+            --accent: #ff6b6b;
+            --accent-light: #ff9e9e;
+            --light: #f8fafc;
+            --dark: #1e293b;
+            --gray: #64748b;
+            --light-gray: #e2e8f0;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --border-radius: 12px;
+            --border-radius-sm: 8px;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+            color: var(--dark);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        /* Header Moderno */
+        .header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            padding: 16px 0;
+            box-shadow: var(--shadow-lg);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .logo-icon {
+            width: 48px;
+            height: 48px;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            backdrop-filter: blur(10px);
+        }
+
+        .logo-text h1 {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 4px;
+            letter-spacing: -0.5px;
+        }
+
+        .logo-text p {
+            font-size: 13px;
+            opacity: 0.9;
+            font-weight: 400;
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .search-bar {
+            position: relative;
+            width: 320px;
+        }
+
+        .search-bar input {
+            width: 100%;
+            padding: 12px 48px 12px 16px;
+            border: none;
+            border-radius: 50px;
+            background: rgba(255, 255, 255, 0.15);
+            color: white;
+            font-size: 14px;
+            transition: var(--transition);
+            backdrop-filter: blur(10px);
+        }
+
+        .search-bar input::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .search-bar input:focus {
+            outline: none;
+            background: rgba(255, 255, 255, 0.25);
+            box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.3);
+        }
+
+        .search-bar button {
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: rgba(255, 255, 255, 0.8);
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 8px 16px;
+            border-radius: 50px;
+            transition: var(--transition);
+            cursor: pointer;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .user-info:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent), var(--accent-light));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            font-weight: 600;
+            color: white;
+            box-shadow: var(--shadow);
+        }
+
+        .user-details {
+            font-size: 14px;
+        }
+
+        .user-name {
+            font-weight: 600;
+        }
+
+        .user-role {
+            font-size: 12px;
+            opacity: 0.8;
+        }
+
+        /* Navigation Moderna */
+        .nav {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 8px;
+        }
+
+        .nav-link {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 14px 20px;
+            color: var(--dark);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 14px;
+            transition: var(--transition);
+            border-radius: var(--border-radius-sm);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nav-link::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background: var(--primary);
+            transition: var(--transition);
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: var(--primary);
+            background: rgba(0, 102, 204, 0.05);
+        }
+
+        .nav-link.active::before {
+            width: 100%;
+        }
+
+        /* Main Content */
+        .main-container {
+            max-width: 1400px;
+            margin: 32px auto;
+            padding: 0 24px;
+            display: grid;
+            grid-template-columns: 1fr 380px;
+            gap: 32px;
+        }
+
+        /* Cards Modernos */
+        .card {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            margin-bottom: 24px;
+            transition: var(--transition);
+            overflow: hidden;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .card-header {
+            padding: 20px 24px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .card-header h2 {
+            font-size: 18px;
+            font-weight: 600;
+            letter-spacing: -0.3px;
+        }
+
+        .card-header i {
+            font-size: 20px;
+            opacity: 0.9;
+        }
+
+        .card-body {
+            padding: 24px;
+        }
+
+        /* Welcome Section Moderna */
+        .welcome-section {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            border-radius: var(--border-radius);
+            padding: 32px;
+            margin-bottom: 32px;
+            box-shadow: var(--shadow-lg);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .welcome-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 100%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%);
+        }
+
+        .welcome-content h2 {
+            font-size: 28px;
+            margin-bottom: 12px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        .welcome-content p {
+            font-size: 16px;
+            opacity: 0.9;
+            max-width: 600px;
+            font-weight: 400;
+        }
+
+        /* Quick Actions Modernas */
+        .quick-actions {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        .action-btn {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 24px 16px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            text-decoration: none;
+            color: var(--dark);
+            transition: var(--transition);
+            text-align: center;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .action-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            transition: var(--transition);
+        }
+
+        .action-btn:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .action-btn:hover::before {
+            left: 100%;
+        }
+
+        .action-btn i {
+            font-size: 28px;
+            margin-bottom: 12px;
+        }
+
+        .action-btn span {
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        /* News Section Moderna */
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 24px;
+        }
+
+        .news-card {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .news-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .news-image {
+            height: 180px;
+            background: linear-gradient(135deg, var(--primary-light), var(--primary));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 48px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .news-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 100%);
+        }
+
+        .news-content {
+            padding: 20px;
+        }
+
+        .news-category {
+            display: inline-block;
+            padding: 6px 12px;
+            background: rgba(0, 102, 204, 0.1);
+            color: var(--primary);
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .news-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            line-height: 1.4;
+            letter-spacing: -0.3px;
+        }
+
+        .news-excerpt {
+            font-size: 14px;
+            color: var(--gray);
+            margin-bottom: 16px;
+            line-height: 1.6;
+        }
+
+        .news-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 12px;
+            color: var(--gray);
+        }
+
+        /* Room Reservations Modernas */
+        .room-list {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .room-item {
+            display: flex;
+            align-items: center;
+            padding: 20px;
+            border-radius: var(--border-radius);
+            background: rgba(248, 250, 252, 0.8);
+            border: 1px solid rgba(226, 232, 240, 0.5);
+            transition: var(--transition);
+            backdrop-filter: blur(10px);
+        }
+
+        .room-item:hover {
+            background: rgba(255, 255, 255, 0.9);
+            transform: translateX(4px);
+        }
+
+        .room-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, var(--secondary), #00c6b3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 20px;
+            margin-right: 16px;
+            flex-shrink: 0;
+            box-shadow: var(--shadow);
+        }
+
+        .room-info {
+            flex: 1;
+        }
+
+        .room-info h3 {
+            font-size: 16px;
+            margin-bottom: 6px;
+            font-weight: 600;
+        }
+
+        .room-info p {
+            font-size: 14px;
+            color: var(--gray);
+        }
+
+        .room-status {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .status-available {
+            background: rgba(16, 185, 129, 0.1);
+            color: var(--success);
+        }
+
+        .status-reserved {
+            background: rgba(239, 68, 68, 0.1);
+            color: var(--danger);
+        }
+
+        .reserve-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            border: none;
+            border-radius: var(--border-radius-sm);
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            transition: var(--transition);
+            margin-top: 16px;
+            box-shadow: var(--shadow);
+        }
+
+        .reserve-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        /* Contact List Moderna */
+        .contact-search {
+            margin-bottom: 16px;
+            position: relative;
+        }
+
+        .contact-search input {
+            width: 100%;
+            padding: 12px 16px 12px 40px;
+            border: 1px solid var(--light-gray);
+            border-radius: var(--border-radius-sm);
+            font-size: 14px;
+            background: rgba(248, 250, 252, 0.8);
+            transition: var(--transition);
+        }
+
+        .contact-search input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.1);
+            background: white;
+        }
+
+        .contact-search i {
+            position: absolute;
+            left: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--gray);
+        }
+
+        .contact-list {
+            max-height: 500px;
+            overflow-y: auto;
+            padding-right: 8px;
+        }
+
+        .contact-list::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .contact-list::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.05);
+            border-radius: 10px;
+        }
+
+        .contact-list::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: 10px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            padding: 16px;
+            border-radius: var(--border-radius-sm);
+            transition: var(--transition);
+            margin-bottom: 8px;
+            background: rgba(248, 250, 252, 0.5);
+        }
+
+        .contact-item:hover {
+            background: rgba(255, 255, 255, 0.9);
+            transform: translateX(4px);
+        }
+
+        .contact-avatar {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            font-size: 16px;
+            margin-right: 16px;
+            flex-shrink: 0;
+            box-shadow: var(--shadow);
+        }
+
+        .contact-info {
+            flex: 1;
+        }
+
+        .contact-info h3 {
+            font-size: 15px;
+            margin-bottom: 4px;
+            font-weight: 600;
+        }
+
+        .contact-info p {
+            font-size: 13px;
+            color: var(--gray);
+            margin-bottom: 2px;
+        }
+
+        .contact-actions {
+            display: flex;
+            gap: 8px;
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .contact-item:hover .contact-actions {
+            opacity: 1;
+        }
+
+        .contact-btn {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: rgba(0, 102, 204, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            text-decoration: none;
+            transition: var(--transition);
+            font-size: 14px;
+        }
+
+        .contact-btn:hover {
+            background: var(--primary);
+            color: white;
+            transform: scale(1.1);
+        }
+
+        /* FAQ Moderna */
+        .faq-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .faq-item {
+            padding: 20px;
+            border-radius: var(--border-radius-sm);
+            background: rgba(248, 250, 252, 0.8);
+            border: 1px solid rgba(226, 232, 240, 0.5);
+            transition: var(--transition);
+            cursor: pointer;
+            backdrop-filter: blur(10px);
+        }
+
+        .faq-item:hover {
+            background: rgba(255, 255, 255, 0.9);
+            transform: translateX(4px);
+        }
+
+        .faq-question {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 500;
+            font-size: 14px;
+        }
+
+        .faq-answer {
+            margin-top: 12px;
+            color: var(--gray);
+            font-size: 14px;
+            line-height: 1.6;
+            display: none;
+        }
+
+        .faq-item.active .faq-answer {
+            display: block;
+        }
+
+        .faq-item.active {
+            background: rgba(255, 255, 255, 0.95);
+        }
+
+        /* Footer Moderno */
+        .footer {
+            background: linear-gradient(135deg, var(--dark) 0%, #0f172a 100%);
+            color: white;
+            padding: 40px 0 20px;
+            margin-top: 60px;
+        }
+
+        .footer-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 24px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 32px;
+        }
+
+        .footer-section h3 {
+            font-size: 16px;
+            margin-bottom: 20px;
+            font-weight: 600;
+            position: relative;
+            padding-bottom: 12px;
+        }
+
+        .footer-section h3::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 40px;
+            height: 3px;
+            background: var(--primary);
+            border-radius: 2px;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: #94a3b8;
+            text-decoration: none;
+            font-size: 14px;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .footer-links a:hover {
+            color: white;
+            transform: translateX(4px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            margin-top: 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 13px;
+            color: #94a3b8;
+        }
+
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .main-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .news-grid {
+                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                gap: 16px;
+            }
+            
+            .search-bar {
+                width: 100%;
+                max-width: 400px;
+            }
+            
+            .quick-actions {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .nav-menu {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .news-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .quick-actions {
+                grid-template-columns: 1fr;
+            }
+            
+            .welcome-content h2 {
+                font-size: 24px;
+            }
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 40px 20px;
+            color: var(--gray);
+        }
+
+        .empty-state i {
+            font-size: 48px;
+            margin-bottom: 16px;
+            color: var(--light-gray);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-container">
+            <div class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-landmark"></i>
+                </div>
+                <div class="logo-text">
+                    <h1>CONTROLADORIA GERAL DO MUNICÍPIO</h1>
+                    <p>Prefeitura Municipal de São Paulo</p>
+                </div>
+            </div>
+            <div class="header-actions">
+                <div class="search-bar">
+                    <input type="text" placeholder="Buscar na intranet...">
+                    <button><i class="fas fa-search"></i></button>
+                </div>
+                <div class="user-info">
+                    <div class="user-avatar" id="userAvatar">M</div>
+                    <div class="user-details">
+                        <div class="user-name" id="userName">Marilia</div>
+                        <div class="user-role">Servidor</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-container">
+            <ul class="nav-menu">
+                <li><a href="#" class="nav-link active"><i class="fas fa-home"></i> Início</a></li>
+                <li><a href="#" class="nav-link"><i class="fas fa-newspaper"></i> Diário Oficial</a></li>
+                <li><a href="#" class="nav-link"><i class="fas fa-bullhorn"></i> Notícias</a></li>
+                <li><a href="#" class="nav-link"><i class="fas fa-ticket-alt"></i> Chamados</a></li>
+                <li><a href="#" class="nav-link"><i class="fas fa-users"></i> Servidores</a></li>
+                <li><a href="#" class="nav-link"><i class="fas fa-cogs"></i> Sistemas</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="main-container">
+        <!-- Left Column -->
+        <div class="left-column">
+            <!-- Welcome Section -->
+            <div class="welcome-section">
+                <div class="welcome-content">
+                    <h2>Bem-vindo(a), <span id="welcomeUserName">Marilia</span>!</h2>
+                    <p>Confira as últimas notícias, comunicados e ferramentas disponíveis para seu dia a dia.</p>
+                </div>
+            </div>
+
+            <!-- Quick Actions -->
+            <div class="card">
+                <div class="card-header">
+                    <h2><i class="fas fa-bolt"></i> Ações Rápidas</h2>
+                </div>
+                <div class="card-body">
+                    <div class="quick-actions">
+                        <a href="#" class="action-btn">
+                            <i class="fas fa-newspaper"></i>
+                            <span>Diário Oficial</span>
+                        </a>
+                        <a href="#" class="action-btn">
+                            <i class="fas fa-ticket-alt"></i>
+                            <span>Abrir Chamado</span>
+                        </a>
+                        <a href="#" class="action-btn">
+                            <i class="fas fa-wifi"></i>
+                            <span>Conectar VPN</span>
+                        </a>
+                        <a href="#" class="action-btn">
+                            <i class="fas fa-key"></i>
+                            <span>Redefinir Senha</span>
+                        </a>
+                        <a href="#" class="action-btn">
+                            <i class="fas fa-desktop"></i>
+                            <span>Área de Trabalho</span>
+                        </a>
+                        <a href="#" class="action-btn">
+                            <i class="fas fa-signature"></i>
+                            <span>Minha Assinatura</span>
+                        </a>
+                        <a href="#" class="action-btn">
+                            <i class="fas fa-tools"></i>
+                            <span>CITTI</span>
+                        </a>
+                        <a href="#" class="action-btn">
+                            <i class="fas fa-database"></i>
+                            <span>SEI</span>
+                        </a>
+                        <a href="#" class="action-btn">
+                            <i class="fas fa-chart-line"></i>
+                            <span>SIGRC</span>
+                        </a>
+                        <a href="#" class="action-btn">
+                            <i class="fas fa-file-contract"></i>
+                            <span>CLIC</span>
+                        </a>
+                        <a href="#" class="action-btn">
+                            <i class="fas fa-money-bill-wave"></i>
+                            <span>SOF</span>
+                        </a>
+                        <a href="#" class="action-btn">
+                            <i class="fas fa-chart-bar"></i>
+                            <span>Power BI</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- News Section -->
+            <div class="card">
+                <div class="card-header">
+                    <h2><i class="fas fa-newspaper"></i> Notícias e Comunicados</h2>
+                </div>
+                <div class="card-body">
+                    <div class="news-grid">
+                        <div class="news-card">
+                            <div class="news-image">
+                                <i class="fas fa-bullhorn"></i>
+                            </div>
+                            <div class="news-content">
+                                <span class="news-category">Comunicado RH</span>
+                                <h3 class="news-title">Novo Sistema de Ponto Eletrônico</h3>
+                                <p class="news-excerpt">A partir do próximo mês, será implementado o novo sistema de registro de ponto eletrônico em toda a CGM.</p>
+                                <div class="news-meta">
+                                    <span><i class="far fa-clock"></i> 3 min leitura</span>
+                                    <a href="#" style="color: var(--primary); font-weight: 600; text-decoration: none;">Ler mais →</a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="news-card">
+                            <div class="news-image">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <div class="news-content">
+                                <span class="news-category">Evento</span>
+                                <h3 class="news-title">Workshop: Transparência na Gestão Pública</h3>
+                                <p class="news-excerpt">Participe do workshop sobre as melhores práticas de transparência na gestão pública municipal.</p>
+                                <div class="news-meta">
+                                    <span><i class="far fa-clock"></i> 5 min leitura</span>
+                                    <a href="#" style="color: var(--primary); font-weight: 600; text-decoration: none;">Ler mais →</a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="news-card">
+                            <div class="news-image">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <div class="news-content">
+                                <span class="news-category">Notícia</span>
+                                <h3 class="news-title">CGM Lança Novo Portal de Dados Abertos</h3>
+                                <p class="news-excerpt">A Controladoria Geral do Município acaba de lançar seu novo portal de dados abertos com informações atualizadas.</p>
+                                <div class="news-meta">
+                                    <span><i class="far fa-clock"></i> 4 min leitura</span>
+                                    <a href="#" style="color: var(--primary); font-weight: 600; text-decoration: none;">Ler mais →</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Column -->
+        <div class="right-column">
+            <!-- Room Reservations -->
+            <div class="card">
+                <div class="card-header">
+                    <h2><i class="far fa-calendar-alt"></i> Reservas de Salas</h2>
+                </div>
+                <div class="card-body">
+                    <div class="room-list">
+                        <div class="room-item">
+                            <div class="room-icon">
+                                <i class="fas fa-building"></i>
+                            </div>
+                            <div class="room-info">
+                                <h3>Sala Bloco B</h3>
+                                <p>COPI - BEATRIZ • 10:30 - 12:00</p>
+                            </div>
+                            <span class="room-status status-reserved"><i class="fas fa-circle"></i> Reservada</span>
+                        </div>
+                        
+                        <div class="room-item">
+                            <div class="room-icon">
+                                <i class="fas fa-hotel"></i>
+                            </div>
+                            <div class="room-info">
+                                <h3>Sala 13° Andar</h3>
+                                <p>Disponível o dia todo</p>
+                            </div>
+                            <span class="room-status status-available"><i class="fas fa-circle"></i> Livre</span>
+                        </div>
+                        
+                        <div class="room-item">
+                            <div class="room-icon">
+                                <i class="fas fa-hotel"></i>
+                            </div>
+                            <div class="room-info">
+                                <h3>Sala Secundária</h3>
+                                <p>Disponível o dia todo</p>
+                            </div>
+                            <span class="room-status status-available"><i class="fas fa-circle"></i> Livre</span>
+                        </div>
+                    </div>
+                    
+                    <button class="reserve-btn">
+                        <i class="fas fa-plus"></i>
+                        Reservar Sala
+                    </button>
+                </div>
+            </div>
+
+            <!-- Contact List -->
+            <div class="card">
+                <div class="card-header">
+                    <h2><i class="fas fa-address-book"></i> Lista de Telefones</h2>
+                </div>
+                <div class="card-body">
+                    <div class="contact-search">
+                        <i class="fas fa-search"></i>
+                        <input type="text" placeholder="Pesquisar por nome, telefone, setor ou unidade...">
+                    </div>
+                    <div class="contact-list">
+                        <!-- Auditoria -->
+                        <div class="contact-item">
+                            <div class="contact-avatar">P</div>
+                            <div class="contact-info">
+                                <h3>Paula</h3>
+                                <p>Auditoria • Coordenadoria</p>
+                                <p>3334-7420</p>
+                            </div>
+                            <div class="contact-actions">
+                                <a href="#" class="contact-btn"><i class="fas fa-phone"></i></a>
+                                <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-avatar">EP</div>
+                            <div class="contact-info">
+                                <h3>Erika Paulino</h3>
+                                <p>Auditoria • Auditoria</p>
+                                <p>3334-7417</p>
+                            </div>
+                            <div class="contact-actions">
+                                <a href="#" class="contact-btn"><i class="fas fa-phone"></i></a>
+                                <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-avatar">A</div>
+                            <div class="contact-info">
+                                <h3>Auditores</h3>
+                                <p>Auditoria • Auditoria</p>
+                                <p>3334-7418</p>
+                            </div>
+                            <div class="contact-actions">
+                                <a href="#" class="contact-btn"><i class="fas fa-phone"></i></a>
+                                <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
+                            </div>
+                        </div>
+
+                        <!-- CAF -->
+                        <div class="contact-item">
+                            <div class="contact-avatar">F</div>
+                            <div class="contact-info">
+                                <h3>Fabiana</h3>
+                                <p>CAF • Coordenadoria</p>
+                                <p>3334-7411</p>
+                            </div>
+                            <div class="contact-actions">
+                                <a href="#" class="contact-btn"><i class="fas fa-phone"></i></a>
+                                <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-avatar">AP</div>
+                            <div class="contact-info">
+                                <h3>Ana Pereira</h3>
+                                <p>CAF • Assessoria</p>
+                                <p>3334-7416</p>
+                            </div>
+                            <div class="contact-actions">
+                                <a href="#" class="contact-btn"><i class="fas fa-phone"></i></a>
+                                <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-avatar">K</div>
+                            <div class="contact-info">
+                                <h3>Kátia</h3>
+                                <p>CAF • DADM</p>
+                                <p>3334-7422</p>
+                            </div>
+                            <div class="contact-actions">
+                                <a href="#" class="contact-btn"><i class="fas fa-phone"></i></a>
+                                <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-avatar">R</div>
+                            <div class="contact-info">
+                                <h3>Retek</h3>
+                                <p>CAF • DADM</p>
+                                <p>3334-7123</p>
+                            </div>
+                            <div class="contact-actions">
+                                <a href="#" class="contact-btn"><i class="fas fa-phone"></i></a>
+                                <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-avatar">A</div>
+                            <div class="contact-info">
+                                <h3>Auricélia</h3>
+                                <p>CAF • DADM</p>
+                                <p>3334-7440</p>
+                            </div>
+                            <div class="contact-actions">
+                                <a href="#" class="contact-btn"><i class="fas fa-phone"></i></a>
+                                <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-avatar">M</div>
+                            <div class="contact-info">
+                                <h3>Mariana</h3>
+                                <p>CAF • DEOF</p>
+                                <p>3334-7424</p>
+                            </div>
+                            <div class="contact-actions">
+                                <a href="#" class="contact-btn"><i class="fas fa-phone"></i></a>
+                                <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-avatar">BL</div>
+                            <div class="contact-info">
+                                <h3>Bianca Loures</h3>
+                                <p>CAF • DEOF</p>
+                                <p>3334-7426</p>
+                            </div>
+                            <div class="contact-actions">
+                                <a href="#" class="contact-btn"><i class="fas fa-phone"></i></a>
+                                <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-avatar">F</div>
+                            <div class="contact-info">
+                                <h3>Fátima</h3>
+                                <p>CAF • DEOF</p>
+                                <p>3334-7436</p>
+                            </div>
+                            <div class="contact-actions">
+                                <a href="#" class="contact-btn"><i class="fas fa-phone"></i></a>
+                                <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-avatar">E</div>
+                            <div class="contact-info">
+                                <h3>Edivaldo</h3>
+                                <p>CAF • DEOF</p>
+                                <p>3334-7438</p>
+                            </div>
+                            <div class="contact-actions">
+                                <a href="#" class="contact-btn"><i class="fas fa-phone"></i></a>
+                                <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-avatar">L</div>
+                            <div class="contact-info">
+                                <h3>Luiz</h3>
+                                <p>CAF • DGP</p>
+                                <p>3334-7421</p>
+                            </div>
+                            <div class="contact-actions">
+                                <a href="#" class="contact-btn"><i class="fas fa-phone"></i></a>
+                                <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-avatar">F</div>
+                            <div class="contact-info">
+                                <h3>Fabrício</h3>
+                                <p>CAF • DGP</p>
+                                <p>3334-7432</p>
+                            </div>
+                            <div class="contact-actions">
+                                <a href="#" class="contact-btn"><i class="fas fa-phone"></i></a>
+                                <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-avatar">AE</div>
+                            <div class="contact-info">
+                                <h3>André / Emerson</h3>
+                                <p>CAF • DGP</p>
+                                <p>3334-7433</p>
+                            </div>
+                            <div class="contact-actions">
+                                <a href="#" class="contact-btn"><i class="fas fa-phone"></i></a>
+                                <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-avatar">F</div>
+                            <div class="contact-info">
+                                <h3>Fabrício</h3>
+                                <p>CAF • DGP</p>
+                                <p>3334-7434</p>
+                            </div>
+                            <div class="contact-actions">
+                                <a href="#" class="contact-btn"><i class="fas fa-phone"></i></a>
+                                <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-avatar">V</div>
+                            <div class="contact-info">
+                                <h3>Vanessa</h3>
+                                <p>CAF • DLIC</p>
+                                <p>3334-7443</p>
+                            </div>
+                            <div class="contact-actions">
+                                <a href="#" class="contact-btn"><i class="fas fa-phone"></i></a>
+                                <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-avatar">JG</div>
+                            <div class="contact-info">
+                                <h3>Josué / Gabriela</h3>
+                                <p>CAF • DLIC</p>
+                                <p>3334-7412</p>
+                            </div>
+                            <div class="contact-actions">
+                                <a href="#" class="contact-btn"><i class="fas fa-phone"></i></a>
+                                <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-avatar">E</div>
+                            <div class="contact-info">
+                                <h3>Erik</h3>
+                                <p>CAF • DLIC</p>
+                                <p>3334-7437</p>
+                            </div>
+                            <div class="contact-actions">
+                                <a href="#" class="contact-btn"><i class="fas fa-phone"></i></a>
+                                <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-avatar">M</div>
+                            <div class="contact-info">
+                                <h3>Maurício</h3>
+                                <p>CAF • DTIC</p>
+                                <p>3334-7403</p>
+                            </div>
+                            <div class="contact-actions">
+                                <a href="#" class="contact-btn"><i class="fas fa-phone"></i></a>
+                                <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-avatar">A</div>
+                            <div class="contact-info">
+                                <h3>Adaiton</h3>
+                                <p>CAF • DTIC</p>
+                                <p>3334-7104</p>
+                            </div>
+                            <div class="contact-actions">
+                                <a href="#" class="contact-btn"><i class="fas fa-phone"></i></a>
+                                <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-avatar">J</div>
+                            <div class="contact-info">
+                                <h3>Junior</h3>
+                                <p>CAF • DTIC</p>
+                                <p>3334-7404</p>
+                            </div>
+                            <div class="contact-actions">
+                                <a href="#" class="contact-btn"><i class="fas fa-phone"></i></a>
+                                <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-avatar">M</div>
+                            <div class="contact-info">
+                                <h3>Maurício</h3>
+                                <p>CAF • DTIC</p>
+                                <p>3334-7419</p>
+                            </div>
+                            <div class="contact-actions">
+                                <a href="#" class="contact-btn"><i class="fas fa-phone"></i></a>
+                                <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-avatar">R</div>
+                            <div class="contact-info">
+                                <h3>Rosilene</h3>
+                                <p>CAF • Assessoria</p>
+                                <p>3334-7145</p>
+                            </div>
+                            <div class="contact-actions">
+                                <a href="#" class="contact-btn"><i class="fas fa-phone"></i></a>
+                                <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-avatar">PV</div>
+                            <div class="contact-info">
+                                <h3>Patrícia / Vithoria</h3>
+                                <p>CAF • DADM</p>
+                                <p>3334-7441</p>
+                            </div>
+                            <div class="contact-actions">
+                                <a href="#" class="contact-btn"><i class="fas fa-phone"></i></a>
+                                <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
+                            </div>
+                        </div>
+
+                        <!-- COPI -->
+                        <div class="contact-item">
+                            <div class="contact-avatar">BC</div>
+                            <div class="contact-info">
+                                <h3>Beatriz Chaves</h3>
+                                <p>COPI • Coordenadoria</p>
+                                <p>3334-7120</p>
+                            </div>
+                            <div class="contact-actions">
+                                <a href="#" class="contact-btn"><i class="fas fa-phone"></i></a>
+                                <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-avatar">M</div>
+                            <div class="contact-info">
+                                <h3>Marcela</h3>
+                                <p>COPI • DPE</p>
+                                <p>3334-7127</p>
+                            </div>
+                            <div class="contact-actions">
+                                <a href="#" class="contact-btn"><i class="fas fa-phone"></i></a>
+                                <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-avatar">J</div>
+                            <div class="contact-info">
+                                <h3>Jardel</h3>
+                                <p>COPI • DPIBP</p>
+                                <p>3334-7114</p>
+                            </div>
+                            <div class="contact-actions">
+                                <a href="#" class="contact-btn"><i class="fas fa-phone"></i></a>
+                                <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-avatar">BJ</div>
+                            <div class="contact-info">
+                                <h3>Bianca Jacom</h3>
+                                <p>COPI • DTA</p>
+                                <p>3334-7110</p>
+                            </div>
+                            <div class="contact-actions">
+                                <a href="#" class="contact-btn"><i class="fas fa-phone"></i></a>
+                                <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-avatar">GC</div>
+                            <div class="contact-info">
+                                <h3>Gabriela Camargo</h3>
+                                <p>COPI • Assessoria</p>
+                                <p>3334-7121</p>
+                            </div>
+                            <div class="contact-actions">
+                                <a href="#" class="contact-btn"><i class="fas fa-phone"></i></a>
+                                <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-avatar">LF</div>
+                            <div class="contact-info">
+                                <h3>Luis Fernando</h3>
+                                <p>COPI • CFCI</p>
+                                <p>3334-7113</p>
+                            </div>
+                            <div class="contact-actions">
+                                <a href="#" class="contact-btn"><i class="fas fa-phone"></i></a>
+                                <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
+                            </div>
+                        </div>
+
+                        <!-- Corregedoria -->
+                        <div class="contact-item">
+                            <div class="contact-avatar">C</div>
+                            <div class="contact-info">
+                                <h3>Carolina</h3>
+                                <p>Corregedoria • Corregedora</p>
+                                <p>3334-7143</p>
+                            </div>
+                            <div class="contact-actions">
+                                <a href="#" class="contact-btn"><i class="fas fa-phone"></i></a>
+                                <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-avatar">WC</div>
+                            <div class="contact-info">
+                                <h3>Willian / César</h3>
+                                <p>Corregedoria • Cartório</p>
+                                <p>3334-7135</p>
+                            </div>
+                            <div class="contact-actions">
+                                <a href="#" class="contact-btn"><i class="fas fa-phone"></i></a>
+                                <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-avatar">MB</div>
+                            <div class="contact-info">
+                                <h3>Mirian / Beatriz Martins / Marion</h3>
+                                <p>Corregedoria • Cartório</p>
+                                <p>3334-7136</p>
+                            </div>
+                            <div class="contact-actions">
+                                <a href="#" class="contact-btn"><i class="fas fa-phone"></i></a>
+                                <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-avatar">E</div>
+                            <div class="contact-info">
+                                <h3>Equipe / Sala Mata Atlântica</h3>
+                                <p>Corregedoria • Conjunto D</p>
+                                <p>3334-7133</p>
+                            </div>
+                            <div class="contact-actions">
+                                <a href="#" class="contact-btn"><i class="fas fa-phone"></i></a>
+                                <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-avatar">DRB</div>
+                            <div class="contact-info">
+                                <h3>Daniele / Rodrigo / Bárbara</h3>
+                                <p>Corregedoria • Assessoria Jurídica</p>
+                                <p>3334-7137</p>
+                            </div>
+                            <div class="contact-actions">
+                                <a href="#" class="contact-btn"><i class="fas fa-phone"></i></a>
+                                <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-avatar">OJ</div>
+                            <div class="contact-info">
+                                <h3>Otávio / João Tonnera</h3>
+                                <p>Corregedoria • Procuradores</p>
+                                <p>3334-7138</p>
+                            </div>
+                            <div class="contact-actions">
+                                <a href="#" class="contact-btn"><i class="fas fa-phone"></i></a>
+                                <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
+                            </div>
+                        </div>
+
+                        <!-- Gabinete -->
+                        <div class="contact-item">
+                            <div class="contact-avatar">D</div>
+                            <div class="contact-info">
+                                <h3>Daniel</h3>
+                                <p>Gabinete • Controlador</p>
+                                <p>3113-8238</p>
+                            </div>
+                            <div class="contact-actions">
+                                <a href="#" class="contact-btn"><i class="fas fa-phone"></i></a>
+                                <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-avatar">T</div>
+                            <div class="contact-info">
+                                <h3>Thalita</h3>
+                                <p>Gabinete • Chefia de Gabinete</p>
+                                <p>3113-8222</p>
+                            </div>
+                            <div class="contact-actions">
+                                <a href="#" class="contact-btn"><i class="fas fa-phone"></i></a>
+                                <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-avatar">L</div>
+                            <div class="contact-info">
+                                <h3>Linda</h3>
+                                <p>Gabinete • Secretaria</p>
+                                <p>3113-8269</p>
+                            </div>
+                            <div class="contact-actions">
+                                <a href="#" class="contact-btn"><i class="fas fa-phone"></i></a>
+                                <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-avatar">N</div>
+                            <div class="contact-info">
+                                <h3>Nataly</h3>
+                                <p>Gabinete • Secretaria</p>
+                                <p>3113-8249</p>
+                            </div>
+                            <div class="contact-actions">
+                                <a href="#" class="contact-btn"><i class="fas fa-phone"></i></a>
+                                <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-avatar">G</div>
+                            <div class="contact-info">
+                                <h3>Geral</h3>
+                                <p>Gabinete • Secretaria</p>
+                                <p>3113-8234</p>
+                            </div>
+                            <div class="contact-actions">
+                                <a href="#" class="contact-btn"><i class="fas fa-phone"></i></a>
+                                <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-avatar">M</div>
+                            <div class="contact-info">
+                                <h3>Mariana</h3>
+                                <p>Gabinete • Assessoras</p>
+                                <p>3113-8633</p>
+                            </div>
+                            <div class="contact-actions">
+                                <a href="#" class="contact-btn"><i class="fas fa-phone"></i></a>
+                                <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-avatar">S</div>
+                            <div class="contact-info">
+                                <h3>Soraya</h3>
+                                <p>Gabinete • Assessoria Jurídica</p>
+                                <p>3113-8287</p>
+                            </div>
+                            <div class="contact-actions">
+                                <a href="#" class="contact-btn"><i class="fas fa-phone"></i></a>
+                                <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-avatar">H</div>
+                            <div class="contact-info">
+                                <h3>Henrique</h3>
+                                <p>Gabinete • Assessoria Jurídica</p>
+                                <p>3113-8233</p>
+                            </div>
+                            <div class="contact-actions">
+                                <a href="#" class="contact-btn"><i class="fas fa-phone"></i></a>
+                                <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-avatar">JV</div>
+                            <div class="contact-info">
+                                <h3>João Victor</h3>
+                                <p>Gabinete • CPD</p>
+                                <p>3113-8288</p>
+                            </div>
+                            <div class="contact-actions">
+                                <a href="#" class="contact-btn"><i class="fas fa-phone"></i></a>
+                                <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-avatar">G</div>
+                            <div class="contact-info">
+                                <h3>Gabriela</h3>
+                                <p>Gabinete • CPD</p>
+                                <p>3113-8237</p>
+                            </div>
+                            <div class="contact-actions">
+                                <a href="#" class="contact-btn"><i class="fas fa-phone"></i></a>
+                                <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-avatar">MV</div>
+                            <div class="contact-info">
+                                <h3>Maria Vitória</h3>
+                                <p>Gabinete • CPD</p>
+                                <p>3113-8634</p>
+                            </div>
+                            <div class="contact-actions">
+                                <a href="#" class="contact-btn"><i class="fas fa-phone"></i></a>
+                                <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-avatar">M</div>
+                            <div class="contact-info">
+                                <h3>Marcus</h3>
+                                <p>Gabinete • CPD</p>
+                                <p>3113-8258</p>
+                            </div>
+                            <div class="contact-actions">
+                                <a href="#" class="contact-btn"><i class="fas fa-phone"></i></a>
+                                <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-avatar">A</div>
+                            <div class="contact-info">
+                                <h3>APRI</h3>
+                                <p>Gabinete • APRI</p>
+                                <p>3113-8247</p>
+                            </div>
+                            <div class="contact-actions">
+                                <a href="#" class="contact-btn"><i class="fas fa-phone"></i></a>
+                                <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-avatar">W</div>
+                            <div class="contact-info">
+                                <h3>Wagner</h3>
+                                <p>Gabinete • ASCOM</p>
+                                <p>3113-8236</p>
+                            </div>
+                            <div class="contact-actions">
+                                <a href="#" class="contact-btn"><i class="fas fa-phone"></i></a>
+                                <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-avatar">T</div>
+                            <div class="contact-info">
+                                <h3>Tonys</h3>
+                                <p>Gabinete • ASCOM</p>
+                                <p>3113-8631</p>
+                            </div>
+                            <div class="contact-actions">
+                                <a href="#" class="contact-btn"><i class="fas fa-phone"></i></a>
+                                <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-avatar">JV</div>
+                            <div class="contact-info">
+                                <h3>João Victor</h3>
+                                <p>Gabinete • Assessoria Técnica</p>
+                                <p>3113-8227</p>
+                            </div>
+                            <div class="contact-actions">
+                                <a href="#" class="contact-btn"><i class="fas fa-phone"></i></a>
+                                <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-avatar">V</div>
+                            <div class="contact-info">
+                                <h3>Victor</h3>
+                                <p>Gabinete • Assessoria Técnica</p>
+                                <p>3113-8289</p>
+                            </div>
+                            <div class="contact-actions">
+                                <a href="#" class="contact-btn"><i class="fas fa-phone"></i></a>
+                                <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-avatar">W</div>
+                            <div class="contact-info">
+                                <h3>Wagner</h3>
+                                <p>Gabinete • Assessoria Técnica</p>
+                                <p>3113-8250</p>
+                            </div>
+                            <div class="contact-actions">
+                                <a href="#" class="contact-btn"><i class="fas fa-phone"></i></a>
+                                <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-avatar">LPR</div>
+                            <div class="contact-info">
+                                <h3>Luis Felipe / Patricia / Rafael</h3>
+                                <p>Gabinete • Assessoria Técnica</p>
+                                <p>3113-8231</p>
+                            </div>
+                            <div class="contact-actions">
+                                <a href="#" class="contact-btn"><i class="fas fa-phone"></i></a>
+                                <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-avatar">WCL</div>
+                            <div class="contact-info">
+                                <h3>Wagner / Carolina / Luiz Felipe</h3>
+                                <p>Gabinete • CMAI</p>
+                                <p>3113-8250</p>
+                            </div>
+                            <div class="contact-actions">
+                                <a href="#" class="contact-btn"><i class="fas fa-phone"></i></a>
+                                <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-avatar">G</div>
+                            <div class="contact-info">
+                                <h3>Glaucia</h3>
+                                <p>Gabinete • CODUSP</p>
+                                <p>3113-8285</p>
+                            </div>
+                            <div class="contact-actions">
+                                <a href="#" class="contact-btn"><i class="fas fa-phone"></i></a>
+                                <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-avatar">K</div>
+                            <div class="contact-info">
+                                <h3>Kelvyn</h3>
+                                <p>Gabinete • CODUSP</p>
+                                <p>3113-8635</p>
+                            </div>
+                            <div class="contact-actions">
+                                <a href="#" class="contact-btn"><i class="fas fa-phone"></i></a>
+                                <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-avatar">G</div>
+                            <div class="contact-info">
+                                <h3>Glaucia</h3>
+                                <p>Gabinete • CODUSP</p>
+                                <p>3113-8632</p>
+                            </div>
+                            <div class="contact-actions">
+                                <a href="#" class="contact-btn"><i class="fas fa-phone"></i></a>
+                                <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
+                            </div>
+                        </div>
+
+                        <!-- Ouvidoria -->
+                        <div class="contact-item">
+                            <div class="contact-avatar">ML</div>
+                            <div class="contact-info">
+                                <h3>Maria Lumena</h3>
+                                <p>Ouvidoria • Ouvidora</p>
+                                <p>3334-7105</p>
+                            </div>
+                            <div class="contact-actions">
+                                <a href="#" class="contact-btn"><i class="fas fa-phone"></i></a>
+                                <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-avatar">D</div>
+                            <div class="contact-info">
+                                <h3>Débora</h3>
+                                <p>Ouvidoria • Atendimento</p>
+                                <p>3334-7116</p>
+                            </div>
+                            <div class="contact-actions">
+                                <a href="#" class="contact-btn"><i class="fas fa-phone"></i></a>
+                                <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-avatar">F</div>
+                            <div class="contact-info">
+                                <h3>Francisca / Andrey / Claúdia / Amaury</h3>
+                                <p>Ouvidoria • Demandas</p>
+                                <p>3334-7115</p>
+                            </div>
+                            <div class="contact-actions">
+                                <a href="#" class="contact-btn"><i class="fas fa-phone"></i></a>
+                                <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-avatar">CG</div>
+                            <div class="contact-info">
+                                <h3>Carolina Jensen / Gisele</h3>
+                                <p>Ouvidoria • Denúncias</p>
+                                <p>3334-7125</p>
+                            </div>
+                            <div class="contact-actions">
+                                <a href="#" class="contact-btn"><i class="fas fa-phone"></i></a>
+                                <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-avatar">LC</div>
+                            <div class="contact-info">
+                                <h3>Liliane Carrillo</h3>
+                                <p>Ouvidoria • DTP</p>
+                                <p>3334-7122</p>
+                            </div>
+                            <div class="contact-actions">
+                                <a href="#" class="contact-btn"><i class="fas fa-phone"></i></a>
+                                <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-avatar">LL</div>
+                            <div class="contact-info">
+                                <h3>Luan / Liliane Carrillo</h3>
+                                <p>Ouvidoria • DTP</p>
+                                <p>3334-7409</p>
+                            </div>
+                            <div class="contact-actions">
+                                <a href="#" class="contact-btn"><i class="fas fa-phone"></i></a>
+                                <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-avatar">LB</div>
+                            <div class="contact-info">
+                                <h3>Luan / Bianca Siqueira</h3>
+                                <p>Ouvidoria • Administrativos</p>
+                                <p>3334-7107</p>
+                            </div>
+                            <div class="contact-actions">
+                                <a href="#" class="contact-btn"><i class="fas fa-phone"></i></a>
+                                <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-avatar">SM</div>
+                            <div class="contact-info">
+                                <h3>Sheila / Marcio</h3>
+                                <p>Ouvidoria • Rela</p>
+                                <p>3334-7101</p>
+                            </div>
+                            <div class="contact-actions">
+                                <a href="#" class="contact-btn"><i class="fas fa-phone"></i></a>
+                                <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FAQ -->
+            <div class="card">
+                <div class="card-header">
+                    <h2><i class="fas fa-question-circle"></i> Suporte TI</h2>
+                </div>
+                <div class="card-body">
+                    <div class="faq-list">
+                        <div class="faq-item active">
+                            <div class="faq-question">
+                                <span><i class="fas fa-wifi"></i> Conectar na VPN</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                            <div class="faq-answer">
+                                <p>Para conectar à VPN, acesse o aplicativo Cisco AnyConnect e use suas credenciais de rede.</p>
+                            </div>
+                        </div>
+                        <div class="faq-item">
+                            <div class="faq-question">
+                                <span><i class="fas fa-ticket-alt"></i> Abrir chamado</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                            <div class="faq-answer">
+                                <p>Acesse o portal do CITI, clique em "Abrir Chamado" e preencha o formulário com os detalhes do problema.</p>
+                            </div>
+                        </div>
+                        <div class="faq-item">
+                            <div class="faq-question">
+                                <span><i class="fas fa-key"></i> Redefinir senha</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                            <div class="faq-answer">
+                                <p>Acesse o portal de autoatendimento ou entre em contato com o suporte técnico para redefinir sua senha.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3>Controladoria Geral do Município</h3>
+                <ul class="footer-links">
+                    <li><a href="#"><i class="fas fa-info-circle"></i> Sobre a CGM</a></li>
+                    <li><a href="#"><i class="fas fa-sitemap"></i> Estrutura Organizacional</a></li>
+                    <li><a href="#"><i class="fas fa-eye"></i> Transparência</a></li>
+                    <li><a href="#"><i class="fas fa-headset"></i> Ouvidoria</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Links Rápidos</h3>
+                <ul class="footer-links">
+                    <li><a href="#"><i class="fas fa-newspaper"></i> Diário Oficial</a></li>
+                    <li><a href="#"><i class="fas fa-bullhorn"></i> Notícias</a></li>
+                    <li><a href="#"><i class="fas fa-ticket-alt"></i> Chamados</a></li>
+                    <li><a href="#"><i class="fas fa-user"></i> Área do Servidor</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contato</h3>
+                <ul class="footer-links">
+                    <li><a href="#"><i class="fas fa-phone"></i> (11) 3334-7400</a></li>
+                    <li><a href="#"><i class="fas fa-envelope"></i> contato@cgm.sp.gov.br</a></li>
+                    <li><a href="#"><i class="fas fa-map-marker-alt"></i> São Paulo - SP</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2023 Controladoria Geral do Município de São Paulo. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        // FAQ Accordion
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const item = question.parentElement;
+                const isActive = item.classList.contains('active');
+                
+                // Close all items
+                document.querySelectorAll('.faq-item').forEach(faq => {
+                    faq.classList.remove('active');
+                });
+                
+                // Open clicked item if it wasn't active
+                if (!isActive) {
+                    item.classList.add('active');
+                }
+            });
+        });
+
+        // Simulate user login
+        const userNames = ['Marilia', 'Tiago', 'Tonys', 'Ana Clara'];
+        const randomUser = userNames[Math.floor(Math.random() * userNames.length)];
+        document.querySelector('.user-name').textContent = randomUser;
+        document.querySelector('#welcomeUserName').textContent = randomUser;
+        document.querySelector('.user-avatar').textContent = randomUser.charAt(0);
+        
+        // Update avatar color based on user
+        const avatarColors = {
+            'Marilia': 'linear-gradient(135deg, #ff6b6b, #ff9e9e)',
+            'Tiago': 'linear-gradient(135deg, #4d94ff, #80b3ff)',
+            'Tonys': 'linear-gradient(135deg, #00a896, #00c6b3)',
+            'Ana Clara': 'linear-gradient(135deg, #9d4edd, #c77dff)'
+        };
+        
+        document.querySelector('.user-avatar').style.background = avatarColors[randomUser];
+
+        // Add subtle animations to cards on load
+        document.addEventListener('DOMContentLoaded', () => {
+            const cards = document.querySelectorAll('.card');
+            cards.forEach((card, index) => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                
+                setTimeout(() => {
+                    card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, index * 100);
+            });
+        });
+
+        // Search functionality for contacts
+        const contactSearch = document.querySelector('.contact-search input');
+        const contactItems = document.querySelectorAll('.contact-item');
+        
+        contactSearch.addEventListener('input', function() {
+            const searchTerm = this.value.toLowerCase();
+            
+            contactItems.forEach(item => {
+                const text = item.textContent.toLowerCase();
+                if (text.includes(searchTerm)) {
+                    item.style.display = 'flex';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
