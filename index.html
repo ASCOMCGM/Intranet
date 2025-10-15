@@ -71,15 +71,23 @@
         }
 
         .logo-icon {
-            width: 48px;
-            height: 48px;
+            width: 130px;
+            height: 130px;
+            border-radius: 1px;
             background: rgba(255, 255, 255, 0.15);
-            border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 24px;
             backdrop-filter: blur(10px);
+            overflow: hidden;
+        }
+
+        .logo-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            padding: 4px;
         }
 
         .logo-text h1 {
@@ -368,7 +376,6 @@
         }
 
         .action-btn:hover {
-            background: var(--primary);
             color: white;
             transform: translateY(-4px);
             box-shadow: var(--shadow-lg);
@@ -387,6 +394,36 @@
             font-size: 14px;
             font-weight: 500;
         }
+
+        /* Cores personalizadas para cada ação rápida */
+        .action-btn:nth-child(1) { background: linear-gradient(135deg, #4d94ff, #0066cc); color: white; }
+        .action-btn:nth-child(2) { background: linear-gradient(135deg, #00a896, #007a6e); color: white; }
+        .action-btn:nth-child(3) { background: linear-gradient(135deg, #ff6b6b, #e74c3c); color: white; }
+        .action-btn:nth-child(4) { background: linear-gradient(135deg, #9d4edd, #7b2cbf); color: white; }
+        .action-btn:nth-child(5) { background: linear-gradient(135deg, #f59e0b, #d97706); color: white; }
+        .action-btn:nth-child(6) { background: linear-gradient(135deg, #10b981, #059669); color: white; }
+        .action-btn:nth-child(7) { background: linear-gradient(135deg, #8b5cf6, #7c3aed); color: white; }
+        .action-btn:nth-child(8) { background: linear-gradient(135deg, #ec4899, #db2777); color: white; }
+        .action-btn:nth-child(9) { background: linear-gradient(135deg, #06b6d4, #0891b2); color: white; }
+        .action-btn:nth-child(10) { background: linear-gradient(135deg, #f97316, #ea580c); color: white; }
+        .action-btn:nth-child(11) { background: linear-gradient(135deg, #84cc16, #65a30d); color: white; }
+        .action-btn:nth-child(12) { background: linear-gradient(135deg, #ef4444, #dc2626); color: white; }
+        .action-btn:nth-child(13) { background: linear-gradient(135deg, #14b8a6, #0d9488); color: white; }
+
+        /* Efeito hover para as ações rápidas */
+        .action-btn:nth-child(1):hover { background: linear-gradient(135deg, #0066cc, #004d99); }
+        .action-btn:nth-child(2):hover { background: linear-gradient(135deg, #007a6e, #005c53); }
+        .action-btn:nth-child(3):hover { background: linear-gradient(135deg, #e74c3c, #c0392b); }
+        .action-btn:nth-child(4):hover { background: linear-gradient(135deg, #7b2cbf, #6a1b9a); }
+        .action-btn:nth-child(5):hover { background: linear-gradient(135deg, #d97706, #b45309); }
+        .action-btn:nth-child(6):hover { background: linear-gradient(135deg, #059669, #047857); }
+        .action-btn:nth-child(7):hover { background: linear-gradient(135deg, #7c3aed, #6d28d9); }
+        .action-btn:nth-child(8):hover { background: linear-gradient(135deg, #db2777, #be185d); }
+        .action-btn:nth-child(9):hover { background: linear-gradient(135deg, #0891b2, #0c4a6e); }
+        .action-btn:nth-child(10):hover { background: linear-gradient(135deg, #ea580c, #c2410c); }
+        .action-btn:nth-child(11):hover { background: linear-gradient(135deg, #65a30d, #4d7c0f); }
+        .action-btn:nth-child(12):hover { background: linear-gradient(135deg, #dc2626, #b91c1c); }
+        .action-btn:nth-child(13):hover { background: linear-gradient(135deg, #0d9488, #0f766e); }
 
         /* News Section Moderna */
         .news-grid {
@@ -411,15 +448,22 @@
         }
 
         .news-image {
-            height: 180px;
+            height: 380px;
+             width: 380px;
             background: linear-gradient(135deg, var(--primary-light), var(--primary));
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
             font-size: 48px;
-            position: relative;
+            position: center;
             overflow: hidden;
+        }
+
+        .news-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
 
         .news-image::before {
@@ -696,20 +740,45 @@
             transform: scale(1.1);
         }
 
-        .sector-divider {
-            font-size: 14px;
-            font-weight: 600;
-            color: var(--primary);
-            padding: 12px 16px;
+        /* Sector Accordion */
+        .sector-accordion {
+            margin-bottom: 8px;
+        }
+
+        .sector-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px;
             background: rgba(0, 102, 204, 0.05);
             border-radius: var(--border-radius-sm);
-            margin-top: 20px;
-            margin-bottom: 12px;
+            cursor: pointer;
+            transition: var(--transition);
             border-left: 3px solid var(--primary);
+            font-weight: 600;
+            color: var(--primary);
         }
-        
-        .sector-divider:first-child {
-            margin-top: 0;
+
+        .sector-header:hover {
+            background: rgba(0, 102, 204, 0.1);
+        }
+
+        .sector-header i {
+            transition: var(--transition);
+        }
+
+        .sector-header.active i {
+            transform: rotate(180deg);
+        }
+
+        .sector-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+
+        .sector-content.active {
+            max-height: 2000px; /* Valor alto para acomodar todos os contatos */
         }
 
         /* FAQ Moderna */
@@ -890,7 +959,8 @@
         <div class="header-container">
             <div class="logo">
                 <div class="logo-icon">
-                    <i class="fas fa-landmark"></i>
+                    <!-- Substitua a URL abaixo pelo logo da CGM -->
+                    <img src="https://prefeitura.sp.gov.br/documents/10957549/0/1.png/81781942-eb34-18c7-3949-3eb9ecfd505f?version=1.0&t=1760539103031&imagePreview=1" alt="Logo CGM">
                 </div>
                 <div class="logo-text">
                     <h1>CONTROLADORIA GERAL DO MUNICÍPIO</h1>
@@ -901,14 +971,6 @@
                 <div class="search-bar">
                     <input type="text" placeholder="Buscar na intranet...">
                     <button><i class="fas fa-search"></i></button>
-                </div>
-                <div class="user-info">
-                    <div class="user-avatar" id="userAvatar">M</div>
-                    <div class="user-details">
-                        <div class="user-name" id="userName">Marilia</div>
-                        <div class="user-role">Servidor</div>
-                    </div>
-                </div>
             </div>
         </div>
     </header>
@@ -917,11 +979,9 @@
         <div class="nav-container">
             <ul class="nav-menu">
                 <li><a href="#" class="nav-link active"><i class="fas fa-home"></i> Início</a></li>
-                <li><a href="#" class="nav-link"><i class="fas fa-newspaper"></i> Diário Oficial</a></li>
-                <li><a href="#" class="nav-link"><i class="fas fa-bullhorn"></i> Notícias</a></li>
-                <li><a href="#" class="nav-link"><i class="fas fa-ticket-alt"></i> Chamados</a></li>
-                <li><a href="#" class="nav-link"><i class="fas fa-users"></i> Servidores</a></li>
-                <li><a href="#" class="nav-link"><i class="fas fa-cogs"></i> Sistemas</a></li>
+                <li><a href="https://diariooficial.prefeitura.sp.gov.br/md_epubli_controlador.php?acao=inicio" class="nav-link"><i class="fas fa-newspaper"></i> Diário Oficial</a></li>
+                <li><a href="https://prefeitura.sp.gov.br/web/controladoria_geral/noticias" class="nav-link"><i class="fas fa-bullhorn"></i> Notícias</a></li>
+                <li><a href="https://clic.prefeitura.sp.gov.br/" class="nav-link"><i class="fas fa-users"></i> Servidores</a></li>
             </ul>
         </div>
     </nav>
@@ -930,7 +990,7 @@
         <div class="left-column">
             <div class="welcome-section">
                 <div class="welcome-content">
-                    <h2>Bem-vindo(a), <span id="welcomeUserName">Marilia</span>!</h2>
+                    <h2>Bem-vindo(a) à Intranet CGM!</h2>
                     <p>Confira as últimas notícias, comunicados e ferramentas disponíveis para seu dia a dia.</p>
                 </div>
             </div>
@@ -941,15 +1001,15 @@
                 </div>
                 <div class="card-body" id="quick-actions-card-body">
                     <div class="quick-actions">
-                        <a href="#" class="action-btn">
+                        <a href="https://diariooficial.prefeitura.sp.gov.br/md_epubli_controlador.php?acao=inicio" class="action-btn">
                             <i class="fas fa-newspaper"></i>
                             <span>Diário Oficial</span>
                         </a>
-                        <a href="#" class="action-btn">
+                        <a href="https://ascomcgm.github.io/ClippingCGM/" class="action-btn">
                             <i class="fas fa-rss"></i>
                             <span>Clipping de Notícias</span>
                         </a>
-                        <a href="#" class="action-btn">
+                        <a href="http://intranetcgm.pmsp/ResolucaoProblemas#citi" class="action-btn">
                             <i class="fas fa-ticket-alt"></i>
                             <span>Abrir Chamado</span>
                         </a>
@@ -969,25 +1029,21 @@
                             <i class="fas fa-signature"></i>
                             <span>Minha Assinatura</span>
                         </a>
-                        <a href="#" class="action-btn">
-                            <i class="fas fa-tools"></i>
-                            <span>CITTI</span>
-                        </a>
-                        <a href="#" class="action-btn">
+                        <a href="https://sei.prefeitura.sp.gov.br/" class="action-btn">
                             <i class="fas fa-database"></i>
                             <span>SEI</span>
                         </a>
-                        <a href="#" class="action-btn">
+                        <a href="https://sigrc.prefeitura.sp.gov.br/auth-web/login?redirect_uri=https://sigrc.prefeitura.sp.gov.br/cube/api/auth/callback&token_aplicacao=otbkk4Z-n57rA3GUw9xr3A&requested_uri=https://sigrc.prefeitura.sp.gov.br/atendimento/receptivo/novo" class="action-btn">
                             <i class="fas fa-chart-line"></i>
                             <span>SIGRC</span>
                         </a>
-                        <a href="#" class="action-btn">
+                        <a href="https://clic.prefeitura.sp.gov.br/" class="action-btn">
                             <i class="fas fa-file-contract"></i>
-                            <span>CLIC</span>
+                            <span>Área do Servidor</span>
                         </a>
-                        <a href="#" class="action-btn">
-                            <i class="fas fa-money-bill-wave"></i>
-                            <span>SOF</span>
+                        <a href="https://prefeitura.sp.gov.br/" class="action-btn">
+                            <i class="fas fa-computer"></i>
+                            <span>SITE PMSP</span>
                         </a>
                         <a href="#" class="action-btn">
                             <i class="fas fa-chart-bar"></i>
@@ -1005,45 +1061,48 @@
                     <div class="news-grid">
                         <div class="news-card">
                             <div class="news-image">
-                                <i class="fas fa-bullhorn"></i>
+                                <!-- Substitua pela URL da imagem real -->
+                                <img src="https://prefeitura.sp.gov.br/documents/10957549/0/integridade+na+administra%C3%A7%C3%A3o+fundo+youtube-03+1.png/1fd32533-b9c7-573b-52cf-44c585f720e5?version=1.0&t=1760098933658&imageThumbnail=1=1" alt="Novo Sistema de Ponto Eletrônico">
                             </div>
                             <div class="news-content">
                                 <span class="news-category">Comunicado RH</span>
-                                <h3 class="news-title">Novo Sistema de Ponto Eletrônico</h3>
-                                <p class="news-excerpt">A partir do próximo mês, será implementado o novo sistema de registro de ponto eletrônico em toda a CGM.</p>
+                                <h3 class="news-title">Evento discute integridade na administração indireta da Prefeitura de São Paulo</h3>
+                                <p class="news-excerpt">Iniciativa da Divisão do Programa de Integridade e Boas Práticas (PIBP) será transmitida ao vivo pelo YouTube da CGM-SP, com tradução em Libras.</p>
                                 <div class="news-meta">
-                                    <span><i class="far fa-clock"></i> 3 min leitura</span>
-                                    <a href="#" style="color: var(--primary); font-weight: 600; text-decoration: none;">Ler mais →</a>
+                                    <span><i class="far fa-clock"></i></span>
+                                    <a href="https://prefeitura.sp.gov.br/web/controladoria_geral/w/evento-discute-integridade-na-administra%C3%A7%C3%A3o-indireta-da-prefeitura-de-s%C3%A3o-paulo" style="color: var(--primary); font-weight: 600; text-decoration: none;">Ler mais →</a>
                                 </div>
                             </div>
                         </div>
                         
                         <div class="news-card">
                             <div class="news-image">
-                                <i class="fas fa-users"></i>
+                                <!-- Substitua pela URL da imagem real -->
+                                <img src="https://prefeitura.sp.gov.br/documents/10957549/0/images.png/92901e7c-8bdb-e8e4-acf8-9a67dd64ad82?t=1759764176525" alt="Workshop Transparência">
                             </div>
                             <div class="news-content">
                                 <span class="news-category">Evento</span>
-                                <h3 class="news-title">Workshop: Transparência na Gestão Pública</h3>
-                                <p class="news-excerpt">Participe do workshop sobre as melhores práticas de transparência na gestão pública municipal.</p>
+                                <h3 class="news-title">Centro de Formação em Controle Interno (CFCI) ultrapassa 25 mil alunos em sua plataforma de ensino online</h3>
+                                <p class="news-excerpt">Plataforma da CGM-SP se consolida como referência nacional em capacitação para o controle interno e a boa governança pública</p>
                                 <div class="news-meta">
-                                    <span><i class="far fa-clock"></i> 5 min leitura</span>
-                                    <a href="#" style="color: var(--primary); font-weight: 600; text-decoration: none;">Ler mais →</a>
+                                    <span><i class="far fa-clock"></i></span>
+                                    <a href="https://prefeitura.sp.gov.br/web/controladoria_geral/w/centro-de-forma%C3%A7%C3%A3o-em-controle-interno-cfci-ultrapassa-25-mil-alunos-em-sua-plataforma-de-ensino-online" style="color: var(--primary); font-weight: 600; text-decoration: none;">Ler mais →</a>
                                 </div>
                             </div>
                         </div>
                         
                         <div class="news-card">
                             <div class="news-image">
-                                <i class="fas fa-chart-line"></i>
+                                <!-- Substitua pela URL da imagem real -->
+                                <img src="https://prefeitura.sp.gov.br/documents/10957549/0/vit%C3%B3ria+no+combate+a+corrup%C3%A7%C3%A3o+2-02.png/893cf7cb-ee11-5665-163d-78788553cdd9?t=1759760867256" alt="Portal de Dados Abertos">
                             </div>
                             <div class="news-content">
                                 <span class="news-category">Notícia</span>
-                                <h3 class="news-title">CGM Lança Novo Portal de Dados Abertos</h3>
-                                <p class="news-excerpt">A Controladoria Geral do Município acaba de lançar seu novo portal de dados abertos com informações atualizadas.</p>
+                                <h3 class="news-title">Justiça confirma sanções aplicadas pela CGM-SP contra empresa envolvida em cartel</h3>
+                                <p class="news-excerpt">Decisão unânime do TJ-SP confirma sanções da CGM contra empreiteira envolvida no cartel de obras do Programa de Desenvolvimento do Sistema Viário Estratégico Metropolitano em São Paulo</p>
                                 <div class="news-meta">
-                                    <span><i class="far fa-clock"></i> 4 min leitura</span>
-                                    <a href="#" style="color: var(--primary); font-weight: 600; text-decoration: none;">Ler mais →</a>
+                                    <span><i class="far fa-clock"></i></span>
+                                    <a href="https://prefeitura.sp.gov.br/web/controladoria_geral/w/justi%C3%A7a-confirma-san%C3%A7%C3%B5es-aplicadas-pela-cgm-sp-contra-empresa-envolvida-em-cartel" style="color: var(--primary); font-weight: 600; text-decoration: none;">Ler mais →</a>
                                 </div>
                             </div>
                         </div>
@@ -1110,765 +1169,699 @@
                         <input type="text" placeholder="Pesquisar por nome, telefone, setor ou unidade...">
                     </div>
                     <div class="contact-list">
-                        <div class="sector-divider">Auditoria</div>
-                        <div class="contact-item">
-                            <div class="contact-avatar">P</div>
-                            <div class="contact-info">
-                                <h3>Paula</h3>
-                                <p>Auditoria • Coordenadoria</p>
-                                <p>3334-7420</p>
+                        <!-- Auditoria -->
+                        <div class="sector-accordion">
+                            <div class="sector-header">
+                                <span>Auditoria</span>
+                                <i class="fas fa-chevron-down"></i>
                             </div>
-                            <div class="contact-actions">
-                                <a href="#" class="contact-btn"><i class="fas fa-phone"></i></a>
-                                <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
-                            </div>
-                        </div>
-                        <div class="contact-item">
-                            <div class="contact-avatar">EP</div>
-                            <div class="contact-info">
-                                <h3>Erika Paulino</h3>
-                                <p>Auditoria • Auditoria</p>
-                                <p>3334-7417</p>
-                            </div>
-                            <div class="contact-actions">
-                                <a href="#" class="contact-btn"><i class="fas fa-phone"></i></a>
-                                <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
-                            </div>
-                        </div>
-                        <div class="contact-item">
-                            <div class="contact-avatar">A</div>
-                            <div class="contact-info">
-                                <h3>Auditores</h3>
-                                <p>Auditoria • Auditoria</p>
-                                <p>3334-7418</p>
-                            </div>
-                            <div class="contact-actions">
-                                <a href="#" class="contact-btn"><i class="fas fa-phone"></i></a>
-                                <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
-                            </div>
-                        </div>
-
-                        <div class="sector-divider">CAF</div>
-                        <div class="contact-item">
-                            <div class="contact-avatar">F</div>
-                            <div class="contact-info">
-                                <h3>Fabiana</h3>
-                                <p>CAF • Coordenadoria</p>
-                                <p>3334-7411</p>
-                            </div>
-                            <div class="contact-actions">
-                                <a href="#" class="contact-btn"><i class="fas fa-phone"></i></a>
-                                <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
-                            </div>
-                        </div>
-                        <div class="contact-item">
-                            <div class="contact-avatar">AP</div>
-                            <div class="contact-info">
-                                <h3>Ana Pereira</h3>
-                                <p>CAF • Assessoria</p>
-                                <p>3334-7416</p>
-                            </div>
-                            <div class="contact-actions">
-                                <a href="#" class="contact-btn"><i class="fas fa-phone"></i></a>
-                                <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
-                            </div>
-                        </div>
-                        <div class="contact-item">
-                            <div class="contact-avatar">K</div>
-                            <div class="contact-info">
-                                <h3>Kátia</h3>
-                                <p>CAF • DADM</p>
-                                <p>3334-7422</p>
-                            </div>
-                            <div class="contact-actions">
-                                <a href="#" class="contact-btn"><i class="fas fa-phone"></i></a>
-                                <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
-                            </div>
-                        </div>
-                        <div class="contact-item">
-                            <div class="contact-avatar">R</div>
-                            <div class="contact-info">
-                                <h3>Retek</h3>
-                                <p>CAF • DADM</p>
-                                <p>3334-7123</p>
-                            </div>
-                            <div class="contact-actions">
-                                <a href="#" class="contact-btn"><i class="fas fa-phone"></i></a>
-                                <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
-                            </div>
-                        </div>
-                        <div class="contact-item">
-                            <div class="contact-avatar">A</div>
-                            <div class="contact-info">
-                                <h3>Auricélia</h3>
-                                <p>CAF • DADM</p>
-                                <p>3334-7440</p>
-                            </div>
-                            <div class="contact-actions">
-                                <a href="#" class="contact-btn"><i class="fas fa-phone"></i></a>
-                                <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
-                            </div>
-                        </div>
-                        <div class="contact-item">
-                            <div class="contact-avatar">M</div>
-                            <div class="contact-info">
-                                <h3>Mariana</h3>
-                                <p>CAF • DEOF</p>
-                                <p>3334-7424</p>
-                            </div>
-                            <div class="contact-actions">
-                                <a href="#" class="contact-btn"><i class="fas fa-phone"></i></a>
-                                <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
-                            </div>
-                        </div>
-                        <div class="contact-item">
-                            <div class="contact-avatar">BL</div>
-                            <div class="contact-info">
-                                <h3>Bianca Loures</h3>
-                                <p>CAF • DEOF</p>
-                                <p>3334-7426</p>
-                            </div>
-                            <div class="contact-actions">
-                                <a href="#" class="contact-btn"><i class="fas fa-phone"></i></a>
-                                <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
-                            </div>
-                        </div>
-                        <div class="contact-item">
-                            <div class="contact-avatar">F</div>
-                            <div class="contact-info">
-                                <h3>Fátima</h3>
-                                <p>CAF • DEOF</p>
-                                <p>3334-7436</p>
-                            </div>
-                            <div class="contact-actions">
-                                <a href="#" class="contact-btn"><i class="fas fa-phone"></i></a>
-                                <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
-                            </div>
-                        </div>
-                        <div class="contact-item">
-                            <div class="contact-avatar">E</div>
-                            <div class="contact-info">
-                                <h3>Edivaldo</h3>
-                                <p>CAF • DEOF</p>
-                                <p>3334-7438</p>
-                            </div>
-                            <div class="contact-actions">
-                                <a href="#" class="contact-btn"><i class="fas fa-phone"></i></a>
-                                <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
-                            </div>
-                        </div>
-                        <div class="contact-item">
-                            <div class="contact-avatar">L</div>
-                            <div class="contact-info">
-                                <h3>Luiz</h3>
-                                <p>CAF • DGP</p>
-                                <p>3334-7421</p>
-                            </div>
-                            <div class="contact-actions">
-                                <a href="#" class="contact-btn"><i class="fas fa-phone"></i></a>
-                                <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
-                            </div>
-                        </div>
-                        <div class="contact-item">
-                            <div class="contact-avatar">F</div>
-                            <div class="contact-info">
-                                <h3>Fabrício</h3>
-                                <p>CAF • DGP</p>
-                                <p>3334-7432</p>
-                            </div>
-                            <div class="contact-actions">
-                                <a href="#" class="contact-btn"><i class="fas fa-phone"></i></a>
-                                <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
-                            </div>
-                        </div>
-                        <div class="contact-item">
-                            <div class="contact-avatar">AE</div>
-                            <div class="contact-info">
-                                <h3>André / Emerson</h3>
-                                <p>CAF • DGP</p>
-                                <p>3334-7433</p>
-                            </div>
-                            <div class="contact-actions">
-                                <a href="#" class="contact-btn"><i class="fas fa-phone"></i></a>
-                                <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
-                            </div>
-                        </div>
-                        <div class="contact-item">
-                            <div class="contact-avatar">F</div>
-                            <div class="contact-info">
-                                <h3>Fabrício</h3>
-                                <p>CAF • DGP</p>
-                                <p>3334-7434</p>
-                            </div>
-                            <div class="contact-actions">
-                                <a href="#" class="contact-btn"><i class="fas fa-phone"></i></a>
-                                <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
-                            </div>
-                        </div>
-                        <div class="contact-item">
-                            <div class="contact-avatar">V</div>
-                            <div class="contact-info">
-                                <h3>Vanessa</h3>
-                                <p>CAF • DLIC</p>
-                                <p>3334-7443</p>
-                            </div>
-                            <div class="contact-actions">
-                                <a href="#" class="contact-btn"><i class="fas fa-phone"></i></a>
-                                <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
-                            </div>
-                        </div>
-                        <div class="contact-item">
-                            <div class="contact-avatar">JG</div>
-                            <div class="contact-info">
-                                <h3>Josué / Gabriela</h3>
-                                <p>CAF • DLIC</p>
-                                <p>3334-7412</p>
-                            </div>
-                            <div class="contact-actions">
-                                <a href="#" class="contact-btn"><i class="fas fa-phone"></i></a>
-                                <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
-                            </div>
-                        </div>
-                        <div class="contact-item">
-                            <div class="contact-avatar">E</div>
-                            <div class="contact-info">
-                                <h3>Erik</h3>
-                                <p>CAF • DLIC</p>
-                                <p>3334-7437</p>
-                            </div>
-                            <div class="contact-actions">
-                                <a href="#" class="contact-btn"><i class="fas fa-phone"></i></a>
-                                <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
-                            </div>
-                        </div>
-                        <div class="contact-item">
-                            <div class="contact-avatar">M</div>
-                            <div class="contact-info">
-                                <h3>Maurício</h3>
-                                <p>CAF • DTIC</p>
-                                <p>3334-7403</p>
-                            </div>
-                            <div class="contact-actions">
-                                <a href="#" class="contact-btn"><i class="fas fa-phone"></i></a>
-                                <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
-                            </div>
-                        </div>
-                        <div class="contact-item">
-                            <div class="contact-avatar">A</div>
-                            <div class="contact-info">
-                                <h3>Adaiton</h3>
-                                <p>CAF • DTIC</p>
-                                <p>3334-7104</p>
-                            </div>
-                            <div class="contact-actions">
-                                <a href="#" class="contact-btn"><i class="fas fa-phone"></i></a>
-                                <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
-                            </div>
-                        </div>
-                        <div class="contact-item">
-                            <div class="contact-avatar">J</div>
-                            <div class="contact-info">
-                                <h3>Junior</h3>
-                                <p>CAF • DTIC</p>
-                                <p>3334-7404</p>
-                            </div>
-                            <div class="contact-actions">
-                                <a href="#" class="contact-btn"><i class="fas fa-phone"></i></a>
-                                <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
-                            </div>
-                        </div>
-                        <div class="contact-item">
-                            <div class="contact-avatar">M</div>
-                            <div class="contact-info">
-                                <h3>Maurício</h3>
-                                <p>CAF • DTIC</p>
-                                <p>3334-7419</p>
-                            </div>
-                            <div class="contact-actions">
-                                <a href="#" class="contact-btn"><i class="fas fa-phone"></i></a>
-                                <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
-                            </div>
-                        </div>
-                        <div class="contact-item">
-                            <div class="contact-avatar">R</div>
-                            <div class="contact-info">
-                                <h3>Rosilene</h3>
-                                <p>CAF • Assessoria</p>
-                                <p>3334-7145</p>
-                            </div>
-                            <div class="contact-actions">
-                                <a href="#" class="contact-btn"><i class="fas fa-phone"></i></a>
-                                <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
-                            </div>
-                        </div>
-                        <div class="contact-item">
-                            <div class="contact-avatar">PV</div>
-                            <div class="contact-info">
-                                <h3>Patrícia / Vithoria</h3>
-                                <p>CAF • DADM</p>
-                                <p>3334-7441</p>
-                            </div>
-                            <div class="contact-actions">
-                                <a href="#" class="contact-btn"><i class="fas fa-phone"></i></a>
-                                <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
+                            <div class="sector-content">
+                                <div class="contact-item">
+                                    <div class="contact-avatar">P</div>
+                                    <div class="contact-info">
+                                        <h3>Paula</h3>
+                                        <p>Auditoria • Coordenadoria</p>
+                                        <p>3334-7420</p>
+                                    </div>
+                                    <div class="contact-actions">
+                                        <a href="#" class="contact-btn"><i class="fas fa-phone"></i></a>
+                                        <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
+                                    </div>
+                                </div>
+                                <div class="contact-item">
+                                    <div class="contact-avatar">EP</div>
+                                    <div class="contact-info">
+                                        <h3>Erika Paulino</h3>
+                                        <p>Auditoria • Auditoria</p>
+                                        <p>3334-7417</p>
+                                    </div>
+                                    <div class="contact-actions">
+                                        <a href="#" class="contact-btn"><i class="fas fa-phone"></i></a>
+                                        <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
+                                    </div>
+                                </div>
+                                <div class="contact-item">
+                                    <div class="contact-avatar">A</div>
+                                    <div class="contact-info">
+                                        <h3>Auditores</h3>
+                                        <p>Auditoria • Auditoria</p>
+                                        <p>3334-7418</p>
+                                    </div>
+                                    <div class="contact-actions">
+                                        <a href="#" class="contact-btn"><i class="fas fa-phone"></i></a>
+                                        <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
+                                    </div>
+                                </div>
                             </div>
                         </div>
 
-                        <div class="sector-divider">COPI</div>
-                        <div class="contact-item">
-                            <div class="contact-avatar">BC</div>
-                            <div class="contact-info">
-                                <h3>Beatriz Chaves</h3>
-                                <p>COPI • Coordenadoria</p>
-                                <p>3334-7120</p>
+                        <!-- CAF -->
+                        <div class="sector-accordion">
+                            <div class="sector-header">
+                                <span>CAF</span>
+                                <i class="fas fa-chevron-down"></i>
                             </div>
-                            <div class="contact-actions">
-                                <a href="#" class="contact-btn"><i class="fas fa-phone"></i></a>
-                                <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
-                            </div>
-                        </div>
-                        <div class="contact-item">
-                            <div class="contact-avatar">M</div>
-                            <div class="contact-info">
-                                <h3>Marcela</h3>
-                                <p>COPI • DPE</p>
-                                <p>3334-7127</p>
-                            </div>
-                            <div class="contact-actions">
-                                <a href="#" class="contact-btn"><i class="fas fa-phone"></i></a>
-                                <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
-                            </div>
-                        </div>
-                        <div class="contact-item">
-                            <div class="contact-avatar">J</div>
-                            <div class="contact-info">
-                                <h3>Jardel</h3>
-                                <p>COPI • DPIBP</p>
-                                <p>3334-7114</p>
-                            </div>
-                            <div class="contact-actions">
-                                <a href="#" class="contact-btn"><i class="fas fa-phone"></i></a>
-                                <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
-                            </div>
-                        </div>
-                        <div class="contact-item">
-                            <div class="contact-avatar">BJ</div>
-                            <div class="contact-info">
-                                <h3>Bianca Jacom</h3>
-                                <p>COPI • DTA</p>
-                                <p>3334-7110</p>
-                            </div>
-                            <div class="contact-actions">
-                                <a href="#" class="contact-btn"><i class="fas fa-phone"></i></a>
-                                <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
-                            </div>
-                        </div>
-                        <div class="contact-item">
-                            <div class="contact-avatar">GC</div>
-                            <div class="contact-info">
-                                <h3>Gabriela Camargo</h3>
-                                <p>COPI • Assessoria</p>
-                                <p>3334-7121</p>
-                            </div>
-                            <div class="contact-actions">
-                                <a href="#" class="contact-btn"><i class="fas fa-phone"></i></a>
-                                <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
-                            </div>
-                        </div>
-                        <div class="contact-item">
-                            <div class="contact-avatar">LF</div>
-                            <div class="contact-info">
-                                <h3>Luis Fernando</h3>
-                                <p>COPI • CFCI</p>
-                                <p>3334-7113</p>
-                            </div>
-                            <div class="contact-actions">
-                                <a href="#" class="contact-btn"><i class="fas fa-phone"></i></a>
-                                <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
-                            </div>
-                        </div>
-
-                        <div class="sector-divider">Corregedoria</div>
-                        <div class="contact-item">
-                            <div class="contact-avatar">C</div>
-                            <div class="contact-info">
-                                <h3>Carolina</h3>
-                                <p>Corregedoria • Corregedora</p>
-                                <p>3334-7143</p>
-                            </div>
-                            <div class="contact-actions">
-                                <a href="#" class="contact-btn"><i class="fas fa-phone"></i></a>
-                                <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
-                            </div>
-                        </div>
-                        <div class="contact-item">
-                            <div class="contact-avatar">WC</div>
-                            <div class="contact-info">
-                                <h3>Willian / César</h3>
-                                <p>Corregedoria • Cartório</p>
-                                <p>3334-7135</p>
-                            </div>
-                            <div class="contact-actions">
-                                <a href="#" class="contact-btn"><i class="fas fa-phone"></i></a>
-                                <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
-                            </div>
-                        </div>
-                        <div class="contact-item">
-                            <div class="contact-avatar">MB</div>
-                            <div class="contact-info">
-                                <h3>Mirian / Beatriz Martins / Marion</h3>
-                                <p>Corregedoria • Cartório</p>
-                                <p>3334-7136</p>
-                            </div>
-                            <div class="contact-actions">
-                                <a href="#" class="contact-btn"><i class="fas fa-phone"></i></a>
-                                <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
-                            </div>
-                        </div>
-                        <div class="contact-item">
-                            <div class="contact-avatar">E</div>
-                            <div class="contact-info">
-                                <h3>Equipe / Sala Mata Atlântica</h3>
-                                <p>Corregedoria • Conjunto D</p>
-                                <p>3334-7133</p>
-                            </div>
-                            <div class="contact-actions">
-                                <a href="#" class="contact-btn"><i class="fas fa-phone"></i></a>
-                                <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
-                            </div>
-                        </div>
-                        <div class="contact-item">
-                            <div class="contact-avatar">DRB</div>
-                            <div class="contact-info">
-                                <h3>Daniele / Rodrigo / Bárbara</h3>
-                                <p>Corregedoria • Assessoria Jurídica</p>
-                                <p>3334-7137</p>
-                            </div>
-                            <div class="contact-actions">
-                                <a href="#" class="contact-btn"><i class="fas fa-phone"></i></a>
-                                <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
-                            </div>
-                        </div>
-                        <div class="contact-item">
-                            <div class="contact-avatar">OJ</div>
-                            <div class="contact-info">
-                                <h3>Otávio / João Tonnera</h3>
-                                <p>Corregedoria • Procuradores</p>
-                                <p>3334-7138</p>
-                            </div>
-                            <div class="contact-actions">
-                                <a href="#" class="contact-btn"><i class="fas fa-phone"></i></a>
-                                <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
-                            </div>
-                        </div>
-
-                        <div class="sector-divider">Gabinete</div>
-                        <div class="contact-item">
-                            <div class="contact-avatar">D</div>
-                            <div class="contact-info">
-                                <h3>Daniel</h3>
-                                <p>Gabinete • Controlador</p>
-                                <p>3113-8238</p>
-                            </div>
-                            <div class="contact-actions">
-                                <a href="#" class="contact-btn"><i class="fas fa-phone"></i></a>
-                                <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
-                            </div>
-                        </div>
-                        <div class="contact-item">
-                            <div class="contact-avatar">T</div>
-                            <div class="contact-info">
-                                <h3>Thalita</h3>
-                                <p>Gabinete • Chefia de Gabinete</p>
-                                <p>3113-8222</p>
-                            </div>
-                            <div class="contact-actions">
-                                <a href="#" class="contact-btn"><i class="fas fa-phone"></i></a>
-                                <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
-                            </div>
-                        </div>
-                        <div class="contact-item">
-                            <div class="contact-avatar">L</div>
-                            <div class="contact-info">
-                                <h3>Linda</h3>
-                                <p>Gabinete • Secretaria</p>
-                                <p>3113-8269</p>
-                            </div>
-                            <div class="contact-actions">
-                                <a href="#" class="contact-btn"><i class="fas fa-phone"></i></a>
-                                <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
-                            </div>
-                        </div>
-                        <div class="contact-item">
-                            <div class="contact-avatar">N</div>
-                            <div class="contact-info">
-                                <h3>Nataly</h3>
-                                <p>Gabinete • Secretaria</p>
-                                <p>3113-8249</p>
-                            </div>
-                            <div class="contact-actions">
-                                <a href="#" class="contact-btn"><i class="fas fa-phone"></i></a>
-                                <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
-                            </div>
-                        </div>
-                        <div class="contact-item">
-                            <div class="contact-avatar">G</div>
-                            <div class="contact-info">
-                                <h3>Geral</h3>
-                                <p>Gabinete • Secretaria</p>
-                                <p>3113-8234</p>
-                            </div>
-                            <div class="contact-actions">
-                                <a href="#" class="contact-btn"><i class="fas fa-phone"></i></a>
-                                <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
-                            </div>
-                        </div>
-                        <div class="contact-item">
-                            <div class="contact-avatar">M</div>
-                            <div class="contact-info">
-                                <h3>Mariana</h3>
-                                <p>Gabinete • Assessoras</p>
-                                <p>3113-8633</p>
-                            </div>
-                            <div class="contact-actions">
-                                <a href="#" class="contact-btn"><i class="fas fa-phone"></i></a>
-                                <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
-                            </div>
-                        </div>
-                        <div class="contact-item">
-                            <div class="contact-avatar">S</div>
-                            <div class="contact-info">
-                                <h3>Soraya</h3>
-                                <p>Gabinete • Assessoria Jurídica</p>
-                                <p>3113-8287</p>
-                            </div>
-                            <div class="contact-actions">
-                                <a href="#" class="contact-btn"><i class="fas fa-phone"></i></a>
-                                <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
-                            </div>
-                        </div>
-                        <div class="contact-item">
-                            <div class="contact-avatar">H</div>
-                            <div class="contact-info">
-                                <h3>Henrique</h3>
-                                <p>Gabinete • Assessoria Jurídica</p>
-                                <p>3113-8233</p>
-                            </div>
-                            <div class="contact-actions">
-                                <a href="#" class="contact-btn"><i class="fas fa-phone"></i></a>
-                                <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
-                            </div>
-                        </div>
-                        
-                        <div class="sector-divider">Gabinete • CPD</div>
-                        <div class="contact-item">
-                            <div class="contact-avatar">JV</div>
-                            <div class="contact-info">
-                                <h3>João Victor</h3>
-                                <p>Gabinete • CPD</p>
-                                <p>3113-8288</p>
-                            </div>
-                            <div class="contact-actions">
-                                <a href="#" class="contact-btn"><i class="fas fa-phone"></i></a>
-                                <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
-                            </div>
-                        </div>
-                        <div class="contact-item">
-                            <div class="contact-avatar">G</div>
-                            <div class="contact-info">
-                                <h3>Gabriela</h3>
-                                <p>Gabinete • CPD</p>
-                                <p>3113-8237</p>
-                            </div>
-                            <div class="contact-actions">
-                                <a href="#" class="contact-btn"><i class="fas fa-phone"></i></a>
-                                <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
-                            </div>
-                        </div>
-                        <div class="contact-item">
-                            <div class="contact-avatar">MV</div>
-                            <div class="contact-info">
-                                <h3>Maria Vitória</h3>
-                                <p>Gabinete • CPD</p>
-                                <p>3113-8634</p>
-                            </div>
-                            <div class="contact-actions">
-                                <a href="#" class="contact-btn"><i class="fas fa-phone"></i></a>
-                                <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
-                            </div>
-                        </div>
-                        <div class="contact-item">
-                            <div class="contact-avatar">M</div>
-                            <div class="contact-info">
-                                <h3>Marcus</h3>
-                                <p>Gabinete • CPD</p>
-                                <p>3113-8258</p>
-                            </div>
-                            <div class="contact-actions">
-                                <a href="#" class="contact-btn"><i class="fas fa-phone"></i></a>
-                                <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
+                            <div class="sector-content">
+                                <div class="contact-item">
+                                    <div class="contact-avatar">F</div>
+                                    <div class="contact-info">
+                                        <h3>Fabiana</h3>
+                                        <p>CAF • Coordenadoria</p>
+                                        <p>3334-7411</p>
+                                    </div>
+                                    <div class="contact-actions">
+                                        <a href="#" class="contact-btn"><i class="fas fa-phone"></i></a>
+                                        <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
+                                    </div>
+                                </div>
+                                <div class="contact-item">
+                                    <div class="contact-avatar">AP</div>
+                                    <div class="contact-info">
+                                        <h3>Ana Pereira</h3>
+                                        <p>CAF • Assessoria</p>
+                                        <p>3334-7416</p>
+                                    </div>
+                                    <div class="contact-actions">
+                                        <a href="#" class="contact-btn"><i class="fas fa-phone"></i></a>
+                                        <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
+                                    </div>
+                                </div>
+                                <div class="contact-item">
+                                    <div class="contact-avatar">K</div>
+                                    <div class="contact-info">
+                                        <h3>Kátia</h3>
+                                        <p>CAF • DADM</p>
+                                        <p>3334-7422</p>
+                                    </div>
+                                    <div class="contact-actions">
+                                        <a href="#" class="contact-btn"><i class="fas fa-phone"></i></a>
+                                        <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
+                                    </div>
+                                </div>
+                                <div class="contact-item">
+                                    <div class="contact-avatar">R</div>
+                                    <div class="contact-info">
+                                        <h3>Retek</h3>
+                                        <p>CAF • DADM</p>
+                                        <p>3334-7123</p>
+                                    </div>
+                                    <div class="contact-actions">
+                                        <a href="#" class="contact-btn"><i class="fas fa-phone"></i></a>
+                                        <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
+                                    </div>
+                                </div>
+                                <div class="contact-item">
+                                    <div class="contact-avatar">A</div>
+                                    <div class="contact-info">
+                                        <h3>Auricélia</h3>
+                                        <p>CAF • DADM</p>
+                                        <p>3334-7440</p>
+                                    </div>
+                                    <div class="contact-actions">
+                                        <a href="#" class="contact-btn"><i class="fas fa-phone"></i></a>
+                                        <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
+                                    </div>
+                                </div>
+                                <div class="contact-item">
+                                    <div class="contact-avatar">M</div>
+                                    <div class="contact-info">
+                                        <h3>Mariana</h3>
+                                        <p>CAF • DEOF</p>
+                                        <p>3334-7424</p>
+                                    </div>
+                                    <div class="contact-actions">
+                                        <a href="#" class="contact-btn"><i class="fas fa-phone"></i></a>
+                                        <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
+                                    </div>
+                                </div>
+                                <div class="contact-item">
+                                    <div class="contact-avatar">BL</div>
+                                    <div class="contact-info">
+                                        <h3>Bianca Loures</h3>
+                                        <p>CAF • DEOF</p>
+                                        <p>3334-7426</p>
+                                    </div>
+                                    <div class="contact-actions">
+                                        <a href="#" class="contact-btn"><i class="fas fa-phone"></i></a>
+                                        <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
+                                    </div>
+                                </div>
+                                <div class="contact-item">
+                                    <div class="contact-avatar">F</div>
+                                    <div class="contact-info">
+                                        <h3>Fátima</h3>
+                                        <p>CAF • DEOF</p>
+                                        <p>3334-7436</p>
+                                    </div>
+                                    <div class="contact-actions">
+                                        <a href="#" class="contact-btn"><i class="fas fa-phone"></i></a>
+                                        <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
+                                    </div>
+                                </div>
+                                <div class="contact-item">
+                                    <div class="contact-avatar">E</div>
+                                    <div class="contact-info">
+                                        <h3>Edivaldo</h3>
+                                        <p>CAF • DEOF</p>
+                                        <p>3334-7438</p>
+                                    </div>
+                                    <div class="contact-actions">
+                                        <a href="#" class="contact-btn"><i class="fas fa-phone"></i></a>
+                                        <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
+                                    </div>
+                                </div>
+                                <div class="contact-item">
+                                    <div class="contact-avatar">L</div>
+                                    <div class="contact-info">
+                                        <h3>Luiz</h3>
+                                        <p>CAF • DGP</p>
+                                        <p>3334-7421</p>
+                                    </div>
+                                    <div class="contact-actions">
+                                        <a href="#" class="contact-btn"><i class="fas fa-phone"></i></a>
+                                        <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
+                                    </div>
+                                </div>
+                                <div class="contact-item">
+                                    <div class="contact-avatar">F</div>
+                                    <div class="contact-info">
+                                        <h3>Fabrício</h3>
+                                        <p>CAF • DGP</p>
+                                        <p>3334-7432</p>
+                                    </div>
+                                    <div class="contact-actions">
+                                        <a href="#" class="contact-btn"><i class="fas fa-phone"></i></a>
+                                        <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
+                                    </div>
+                                </div>
+                                <div class="contact-item">
+                                    <div class="contact-avatar">AE</div>
+                                    <div class="contact-info">
+                                        <h3>André / Emerson</h3>
+                                        <p>CAF • DGP</p>
+                                        <p>3334-7433</p>
+                                    </div>
+                                    <div class="contact-actions">
+                                        <a href="#" class="contact-btn"><i class="fas fa-phone"></i></a>
+                                        <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
+                                    </div>
+                                </div>
+                                <div class="contact-item">
+                                    <div class="contact-avatar">F</div>
+                                    <div class="contact-info">
+                                        <h3>Fabrício</h3>
+                                        <p>CAF • DGP</p>
+                                        <p>3334-7434</p>
+                                    </div>
+                                    <div class="contact-actions">
+                                        <a href="#" class="contact-btn"><i class="fas fa-phone"></i></a>
+                                        <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
+                                    </div>
+                                </div>
+                                <div class="contact-item">
+                                    <div class="contact-avatar">V</div>
+                                    <div class="contact-info">
+                                        <h3>Vanessa</h3>
+                                        <p>CAF • DLIC</p>
+                                        <p>3334-7443</p>
+                                    </div>
+                                    <div class="contact-actions">
+                                        <a href="#" class="contact-btn"><i class="fas fa-phone"></i></a>
+                                        <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
+                                    </div>
+                                </div>
+                                <div class="contact-item">
+                                    <div class="contact-avatar">JG</div>
+                                    <div class="contact-info">
+                                        <h3>Josué / Gabriela</h3>
+                                        <p>CAF • DLIC</p>
+                                        <p>3334-7412</p>
+                                    </div>
+                                    <div class="contact-actions">
+                                        <a href="#" class="contact-btn"><i class="fas fa-phone"></i></a>
+                                        <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
+                                    </div>
+                                </div>
+                                <div class="contact-item">
+                                    <div class="contact-avatar">E</div>
+                                    <div class="contact-info">
+                                        <h3>Erik</h3>
+                                        <p>CAF • DLIC</p>
+                                        <p>3334-7437</p>
+                                    </div>
+                                    <div class="contact-actions">
+                                        <a href="#" class="contact-btn"><i class="fas fa-phone"></i></a>
+                                        <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
+                                    </div>
+                                </div>
+                                <div class="contact-item">
+                                    <div class="contact-avatar">M</div>
+                                    <div class="contact-info">
+                                        <h3>Maurício</h3>
+                                        <p>CAF • DTIC</p>
+                                        <p>3334-7403</p>
+                                    </div>
+                                    <div class="contact-actions">
+                                        <a href="#" class="contact-btn"><i class="fas fa-phone"></i></a>
+                                        <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
+                                    </div>
+                                </div>
+                                <div class="contact-item">
+                                    <div class="contact-avatar">A</div>
+                                    <div class="contact-info">
+                                        <h3>Adaiton</h3>
+                                        <p>CAF • DTIC</p>
+                                        <p>3334-7104</p>
+                                    </div>
+                                    <div class="contact-actions">
+                                        <a href="#" class="contact-btn"><i class="fas fa-phone"></i></a>
+                                        <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
+                                    </div>
+                                </div>
+                                <div class="contact-item">
+                                    <div class="contact-avatar">J</div>
+                                    <div class="contact-info">
+                                        <h3>Junior</h3>
+                                        <p>CAF • DTIC</p>
+                                        <p>3334-7404</p>
+                                    </div>
+                                    <div class="contact-actions">
+                                        <a href="#" class="contact-btn"><i class="fas fa-phone"></i></a>
+                                        <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
+                                    </div>
+                                </div>
+                                <div class="contact-item">
+                                    <div class="contact-avatar">M</div>
+                                    <div class="contact-info">
+                                        <h3>Maurício</h3>
+                                        <p>CAF • DTIC</p>
+                                        <p>3334-7419</p>
+                                    </div>
+                                    <div class="contact-actions">
+                                        <a href="#" class="contact-btn"><i class="fas fa-phone"></i></a>
+                                        <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
+                                    </div>
+                                </div>
+                                <div class="contact-item">
+                                    <div class="contact-avatar">R</div>
+                                    <div class="contact-info">
+                                        <h3>Rosilene</h3>
+                                        <p>CAF • Assessoria</p>
+                                        <p>3334-7145</p>
+                                    </div>
+                                    <div class="contact-actions">
+                                        <a href="#" class="contact-btn"><i class="fas fa-phone"></i></a>
+                                        <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
+                                    </div>
+                                </div>
+                                <div class="contact-item">
+                                    <div class="contact-avatar">PV</div>
+                                    <div class="contact-info">
+                                        <h3>Patrícia / Vithoria</h3>
+                                        <p>CAF • DADM</p>
+                                        <p>3334-7441</p>
+                                    </div>
+                                    <div class="contact-actions">
+                                        <a href="#" class="contact-btn"><i class="fas fa-phone"></i></a>
+                                        <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
+                                    </div>
+                                </div>
                             </div>
                         </div>
 
-                        <div class="sector-divider">Gabinete • ASCOM</div>
-                        <div class="contact-item">
-                            <div class="contact-avatar">W</div>
-                            <div class="contact-info">
-                                <h3>Wagner</h3>
-                                <p>Gabinete • ASCOM</p>
-                                <p>3113-8236</p>
+                        <!-- COPI -->
+                        <div class="sector-accordion">
+                            <div class="sector-header">
+                                <span>COPI</span>
+                                <i class="fas fa-chevron-down"></i>
                             </div>
-                            <div class="contact-actions">
-                                <a href="#" class="contact-btn"><i class="fas fa-phone"></i></a>
-                                <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
-                            </div>
-                        </div>
-                        <div class="contact-item">
-                            <div class="contact-avatar">T</div>
-                            <div class="contact-info">
-                                <h3>Tonys</h3>
-                                <p>Gabinete • ASCOM</p>
-                                <p>3113-8631</p>
-                            </div>
-                            <div class="contact-actions">
-                                <a href="#" class="contact-btn"><i class="fas fa-phone"></i></a>
-                                <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
+                            <div class="sector-content">
+                                <div class="contact-item">
+                                    <div class="contact-avatar">BC</div>
+                                    <div class="contact-info">
+                                        <h3>Beatriz Chaves</h3>
+                                        <p>COPI • Coordenadoria</p>
+                                        <p>3334-7120</p>
+                                    </div>
+                                    <div class="contact-actions">
+                                        <a href="#" class="contact-btn"><i class="fas fa-phone"></i></a>
+                                        <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
+                                    </div>
+                                </div>
+                                <div class="contact-item">
+                                    <div class="contact-avatar">M</div>
+                                    <div class="contact-info">
+                                        <h3>Marcela</h3>
+                                        <p>COPI • DPE</p>
+                                        <p>3334-7127</p>
+                                    </div>
+                                    <div class="contact-actions">
+                                        <a href="#" class="contact-btn"><i class="fas fa-phone"></i></a>
+                                        <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
+                                    </div>
+                                </div>
+                                <div class="contact-item">
+                                    <div class="contact-avatar">J</div>
+                                    <div class="contact-info">
+                                        <h3>Jardel</h3>
+                                        <p>COPI • DPIBP</p>
+                                        <p>3334-7114</p>
+                                    </div>
+                                    <div class="contact-actions">
+                                        <a href="#" class="contact-btn"><i class="fas fa-phone"></i></a>
+                                        <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
+                                    </div>
+                                </div>
+                                <div class="contact-item">
+                                    <div class="contact-avatar">BJ</div>
+                                    <div class="contact-info">
+                                        <h3>Bianca Jacom</h3>
+                                        <p>COPI • DTA</p>
+                                        <p>3334-7110</p>
+                                    </div>
+                                    <div class="contact-actions">
+                                        <a href="#" class="contact-btn"><i class="fas fa-phone"></i></a>
+                                        <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
+                                    </div>
+                                </div>
+                                <div class="contact-item">
+                                    <div class="contact-avatar">GC</div>
+                                    <div class="contact-info">
+                                        <h3>Gabriela Camargo</h3>
+                                        <p>COPI • Assessoria</p>
+                                        <p>3334-7121</p>
+                                    </div>
+                                    <div class="contact-actions">
+                                        <a href="#" class="contact-btn"><i class="fas fa-phone"></i></a>
+                                        <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
+                                    </div>
+                                </div>
+                                <div class="contact-item">
+                                    <div class="contact-avatar">LF</div>
+                                    <div class="contact-info">
+                                        <h3>Luis Fernando</h3>
+                                        <p>COPI • CFCI</p>
+                                        <p>3334-7113</p>
+                                    </div>
+                                    <div class="contact-actions">
+                                        <a href="#" class="contact-btn"><i class="fas fa-phone"></i></a>
+                                        <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
+                                    </div>
+                                </div>
                             </div>
                         </div>
 
-                        <div class="sector-divider">Gabinete • CODUSP</div>
-                        <div class="contact-item">
-                            <div class="contact-avatar">G</div>
-                            <div class="contact-info">
-                                <h3>Glaucia</h3>
-                                <p>Gabinete • CODUSP</p>
-                                <p>3113-8285</p>
+                        <!-- Corregedoria -->
+                        <div class="sector-accordion">
+                            <div class="sector-header">
+                                <span>Corregedoria</span>
+                                <i class="fas fa-chevron-down"></i>
                             </div>
-                            <div class="contact-actions">
-                                <a href="#" class="contact-btn"><i class="fas fa-phone"></i></a>
-                                <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
-                            </div>
-                        </div>
-                        <div class="contact-item">
-                            <div class="contact-avatar">K</div>
-                            <div class="contact-info">
-                                <h3>Kelvyn</h3>
-                                <p>Gabinete • CODUSP</p>
-                                <p>3113-8635</p>
-                            </div>
-                            <div class="contact-actions">
-                                <a href="#" class="contact-btn"><i class="fas fa-phone"></i></a>
-                                <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
-                            </div>
-                        </div>
-                        <div class="contact-item">
-                            <div class="contact-avatar">G</div>
-                            <div class="contact-info">
-                                <h3>Glaucia</h3>
-                                <p>Gabinete • CODUSP</p>
-                                <p>3113-8632</p>
-                            </div>
-                            <div class="contact-actions">
-                                <a href="#" class="contact-btn"><i class="fas fa-phone"></i></a>
-                                <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
+                            <div class="sector-content">
+                                <div class="contact-item">
+                                    <div class="contact-avatar">C</div>
+                                    <div class="contact-info">
+                                        <h3>Carolina</h3>
+                                        <p>Corregedoria • Corregedora</p>
+                                        <p>3334-7143</p>
+                                    </div>
+                                    <div class="contact-actions">
+                                        <a href="#" class="contact-btn"><i class="fas fa-phone"></i></a>
+                                        <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
+                                    </div>
+                                </div>
+                                <div class="contact-item">
+                                    <div class="contact-avatar">WC</div>
+                                    <div class="contact-info">
+                                        <h3>Willian / César</h3>
+                                        <p>Corregedoria • Cartório</p>
+                                        <p>3334-7135</p>
+                                    </div>
+                                    <div class="contact-actions">
+                                        <a href="#" class="contact-btn"><i class="fas fa-phone"></i></a>
+                                        <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
+                                    </div>
+                                </div>
+                                <div class="contact-item">
+                                    <div class="contact-avatar">MB</div>
+                                    <div class="contact-info">
+                                        <h3>Mirian / Beatriz Martins / Marion</h3>
+                                        <p>Corregedoria • Cartório</p>
+                                        <p>3334-7136</p>
+                                    </div>
+                                    <div class="contact-actions">
+                                        <a href="#" class="contact-btn"><i class="fas fa-phone"></i></a>
+                                        <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
+                                    </div>
+                                </div>
+                                <div class="contact-item">
+                                    <div class="contact-avatar">E</div>
+                                    <div class="contact-info">
+                                        <h3>Equipe / Sala Mata Atlântica</h3>
+                                        <p>Corregedoria • Conjunto D</p>
+                                        <p>3334-7133</p>
+                                    </div>
+                                    <div class="contact-actions">
+                                        <a href="#" class="contact-btn"><i class="fas fa-phone"></i></a>
+                                        <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
+                                    </div>
+                                </div>
+                                <div class="contact-item">
+                                    <div class="contact-avatar">DRB</div>
+                                    <div class="contact-info">
+                                        <h3>Daniele / Rodrigo / Bárbara</h3>
+                                        <p>Corregedoria • Assessoria Jurídica</p>
+                                        <p>3334-7137</p>
+                                    </div>
+                                    <div class="contact-actions">
+                                        <a href="#" class="contact-btn"><i class="fas fa-phone"></i></a>
+                                        <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
+                                    </div>
+                                </div>
+                                <div class="contact-item">
+                                    <div class="contact-avatar">OJ</div>
+                                    <div class="contact-info">
+                                        <h3>Otávio / João Tonnera</h3>
+                                        <p>Corregedoria • Procuradores</p>
+                                        <p>3334-7138</p>
+                                    </div>
+                                    <div class="contact-actions">
+                                        <a href="#" class="contact-btn"><i class="fas fa-phone"></i></a>
+                                        <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
+                                    </div>
+                                </div>
                             </div>
                         </div>
 
-                        <div class="sector-divider">Ouvidoria</div>
-                        <div class="contact-item">
-                            <div class="contact-avatar">ML</div>
-                            <div class="contact-info">
-                                <h3>Maria Lumena</h3>
-                                <p>Ouvidoria • Ouvidora</p>
-                                <p>3334-7105</p>
+                        <!-- Gabinete -->
+                        <div class="sector-accordion">
+                            <div class="sector-header">
+                                <span>Gabinete</span>
+                                <i class="fas fa-chevron-down"></i>
                             </div>
-                            <div class="contact-actions">
-                                <a href="#" class="contact-btn"><i class="fas fa-phone"></i></a>
-                                <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
+                            <div class="sector-content">
+                                <div class="contact-item">
+                                    <div class="contact-avatar">D</div>
+                                    <div class="contact-info">
+                                        <h3>Daniel</h3>
+                                        <p>Gabinete • Controlador</p>
+                                        <p>3113-8238</p>
+                                    </div>
+                                    <div class="contact-actions">
+                                        <a href="#" class="contact-btn"><i class="fas fa-phone"></i></a>
+                                        <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
+                                    </div>
+                                </div>
+                                <div class="contact-item">
+                                    <div class="contact-avatar">T</div>
+                                    <div class="contact-info">
+                                        <h3>Thalita</h3>
+                                        <p>Gabinete • Chefia de Gabinete</p>
+                                        <p>3113-8222</p>
+                                    </div>
+                                    <div class="contact-actions">
+                                        <a href="#" class="contact-btn"><i class="fas fa-phone"></i></a>
+                                        <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
+                                    </div>
+                                </div>
+                                <div class="contact-item">
+                                    <div class="contact-avatar">L</div>
+                                    <div class="contact-info">
+                                        <h3>Linda</h3>
+                                        <p>Gabinete • Secretaria</p>
+                                        <p>3113-8269</p>
+                                    </div>
+                                    <div class="contact-actions">
+                                        <a href="#" class="contact-btn"><i class="fas fa-phone"></i></a>
+                                        <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
+                                    </div>
+                                </div>
+                                <div class="contact-item">
+                                    <div class="contact-avatar">N</div>
+                                    <div class="contact-info">
+                                        <h3>Nataly</h3>
+                                        <p>Gabinete • Secretaria</p>
+                                        <p>3113-8249</p>
+                                    </div>
+                                    <div class="contact-actions">
+                                        <a href="#" class="contact-btn"><i class="fas fa-phone"></i></a>
+                                        <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
+                                    </div>
+                                </div>
+                                <div class="contact-item">
+                                    <div class="contact-avatar">G</div>
+                                    <div class="contact-info">
+                                        <h3>Geral</h3>
+                                        <p>Gabinete • Secretaria</p>
+                                        <p>3113-8234</p>
+                                    </div>
+                                    <div class="contact-actions">
+                                        <a href="#" class="contact-btn"><i class="fas fa-phone"></i></a>
+                                        <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
+                                    </div>
+                                </div>
+                                <div class="contact-item">
+                                    <div class="contact-avatar">M</div>
+                                    <div class="contact-info">
+                                        <h3>Mariana</h3>
+                                        <p>Gabinete • Assessoras</p>
+                                        <p>3113-8633</p>
+                                    </div>
+                                    <div class="contact-actions">
+                                        <a href="#" class="contact-btn"><i class="fas fa-phone"></i></a>
+                                        <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
+                                    </div>
+                                </div>
+                                <div class="contact-item">
+                                    <div class="contact-avatar">S</div>
+                                    <div class="contact-info">
+                                        <h3>Soraya</h3>
+                                        <p>Gabinete • Assessoria Jurídica</p>
+                                        <p>3113-8287</p>
+                                    </div>
+                                    <div class="contact-actions">
+                                        <a href="#" class="contact-btn"><i class="fas fa-phone"></i></a>
+                                        <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
+                                    </div>
+                                </div>
+                                <div class="contact-item">
+                                    <div class="contact-avatar">H</div>
+                                    <div class="contact-info">
+                                        <h3>Henrique</h3>
+                                        <p>Gabinete • Assessoria Jurídica</p>
+                                        <p>3113-8233</p>
+                                    </div>
+                                    <div class="contact-actions">
+                                        <a href="#" class="contact-btn"><i class="fas fa-phone"></i></a>
+                                        <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        <div class="contact-item">
-                            <div class="contact-avatar">D</div>
-                            <div class="contact-info">
-                                <h3>Débora</h3>
-                                <p>Ouvidoria • Atendimento</p>
-                                <p>3334-7116</p>
+
+                        <!-- Ouvidoria -->
+                        <div class="sector-accordion">
+                            <div class="sector-header">
+                                <span>Ouvidoria</span>
+                                <i class="fas fa-chevron-down"></i>
                             </div>
-                            <div class="contact-actions">
-                                <a href="#" class="contact-btn"><i class="fas fa-phone"></i></a>
-                                <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
-                            </div>
-                        </div>
-                        <div class="contact-item">
-                            <div class="contact-avatar">F</div>
-                            <div class="contact-info">
-                                <h3>Francisca / Andrey / Claúdia / Amaury</h3>
-                                <p>Ouvidoria • Demandas</p>
-                                <p>3334-7115</p>
-                            </div>
-                            <div class="contact-actions">
-                                <a href="#" class="contact-btn"><i class="fas fa-phone"></i></a>
-                                <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
-                            </div>
-                        </div>
-                        <div class="contact-item">
-                            <div class="contact-avatar">CG</div>
-                            <div class="contact-info">
-                                <h3>Carolina Jensen / Gisele</h3>
-                                <p>Ouvidoria • Denúncias</p>
-                                <p>3334-7125</p>
-                            </div>
-                            <div class="contact-actions">
-                                <a href="#" class="contact-btn"><i class="fas fa-phone"></i></a>
-                                <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
-                            </div>
-                        </div>
-                        <div class="contact-item">
-                            <div class="contact-avatar">LC</div>
-                            <div class="contact-info">
-                                <h3>Liliane Carrillo</h3>
-                                <p>Ouvidoria • DTP</p>
-                                <p>3334-7122</p>
-                            </div>
-                            <div class="contact-actions">
-                                <a href="#" class="contact-btn"><i class="fas fa-phone"></i></a>
-                                <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
-                            </div>
-                        </div>
-                        <div class="contact-item">
-                            <div class="contact-avatar">LL</div>
-                            <div class="contact-info">
-                                <h3>Luan / Liliane Carrillo</h3>
-                                <p>Ouvidoria • DTP</p>
-                                <p>3334-7409</p>
-                            </div>
-                            <div class="contact-actions">
-                                <a href="#" class="contact-btn"><i class="fas fa-phone"></i></a>
-                                <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
-                            </div>
-                        </div>
-                        <div class="contact-item">
-                            <div class="contact-avatar">LB</div>
-                            <div class="contact-info">
-                                <h3>Luan / Bianca Siqueira</h3>
-                                <p>Ouvidoria • Administrativos</p>
-                                <p>3334-7107</p>
-                            </div>
-                            <div class="contact-actions">
-                                <a href="#" class="contact-btn"><i class="fas fa-phone"></i></a>
-                                <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
-                            </div>
-                        </div>
-                        <div class="contact-item">
-                            <div class="contact-avatar">SM</div>
-                            <div class="contact-info">
-                                <h3>Sheila / Marcio</h3>
-                                <p>Ouvidoria • Rela</p>
-                                <p>3334-7101</p>
-                            </div>
-                            <div class="contact-actions">
-                                <a href="#" class="contact-btn"><i class="fas fa-phone"></i></a>
-                                <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
+                            <div class="sector-content">
+                                <div class="contact-item">
+                                    <div class="contact-avatar">ML</div>
+                                    <div class="contact-info">
+                                        <h3>Maria Lumena</h3>
+                                        <p>Ouvidoria • Ouvidora</p>
+                                        <p>3334-7105</p>
+                                    </div>
+                                    <div class="contact-actions">
+                                        <a href="#" class="contact-btn"><i class="fas fa-phone"></i></a>
+                                        <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
+                                    </div>
+                                </div>
+                                <div class="contact-item">
+                                    <div class="contact-avatar">D</div>
+                                    <div class="contact-info">
+                                        <h3>Débora</h3>
+                                        <p>Ouvidoria • Atendimento</p>
+                                        <p>3334-7116</p>
+                                    </div>
+                                    <div class="contact-actions">
+                                        <a href="#" class="contact-btn"><i class="fas fa-phone"></i></a>
+                                        <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
+                                    </div>
+                                </div>
+                                <div class="contact-item">
+                                    <div class="contact-avatar">F</div>
+                                    <div class="contact-info">
+                                        <h3>Francisca / Andrey / Claúdia / Amaury</h3>
+                                        <p>Ouvidoria • Demandas</p>
+                                        <p>3334-7115</p>
+                                    </div>
+                                    <div class="contact-actions">
+                                        <a href="#" class="contact-btn"><i class="fas fa-phone"></i></a>
+                                        <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
+                                    </div>
+                                </div>
+                                <div class="contact-item">
+                                    <div class="contact-avatar">CG</div>
+                                    <div class="contact-info">
+                                        <h3>Carolina Jensen / Gisele</h3>
+                                        <p>Ouvidoria • Denúncias</p>
+                                        <p>3334-7125</p>
+                                    </div>
+                                    <div class="contact-actions">
+                                        <a href="#" class="contact-btn"><i class="fas fa-phone"></i></a>
+                                        <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
+                                    </div>
+                                </div>
+                                <div class="contact-item">
+                                    <div class="contact-avatar">LC</div>
+                                    <div class="contact-info">
+                                        <h3>Liliane Carrillo</h3>
+                                        <p>Ouvidoria • DTP</p>
+                                        <p>3334-7122</p>
+                                    </div>
+                                    <div class="contact-actions">
+                                        <a href="#" class="contact-btn"><i class="fas fa-phone"></i></a>
+                                        <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
+                                    </div>
+                                </div>
+                                <div class="contact-item">
+                                    <div class="contact-avatar">LL</div>
+                                    <div class="contact-info">
+                                        <h3>Luan / Liliane Carrillo</h3>
+                                        <p>Ouvidoria • DTP</p>
+                                        <p>3334-7409</p>
+                                    </div>
+                                    <div class="contact-actions">
+                                        <a href="#" class="contact-btn"><i class="fas fa-phone"></i></a>
+                                        <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
+                                    </div>
+                                </div>
+                                <div class="contact-item">
+                                    <div class="contact-avatar">LB</div>
+                                    <div class="contact-info">
+                                        <h3>Luan / Bianca Siqueira</h3>
+                                        <p>Ouvidoria • Administrativos</p>
+                                        <p>3334-7107</p>
+                                    </div>
+                                    <div class="contact-actions">
+                                        <a href="#" class="contact-btn"><i class="fas fa-phone"></i></a>
+                                        <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
+                                    </div>
+                                </div>
+                                <div class="contact-item">
+                                    <div class="contact-avatar">SM</div>
+                                    <div class="contact-info">
+                                        <h3>Sheila / Marcio</h3>
+                                        <p>Ouvidoria • Rela</p>
+                                        <p>3334-7101</p>
+                                    </div>
+                                    <div class="contact-actions">
+                                        <a href="#" class="contact-btn"><i class="fas fa-phone"></i></a>
+                                        <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -1928,10 +1921,9 @@
             <div class="footer-section">
                 <h3>Links Rápidos</h3>
                 <ul class="footer-links">
-                    <li><a href="#"><i class="fas fa-newspaper"></i> Diário Oficial</a></li>
-                    <li><a href="#"><i class="fas fa-bullhorn"></i> Notícias</a></li>
-                    <li><a href="#"><i class="fas fa-ticket-alt"></i> Chamados</a></li>
-                    <li><a href="#"><i class="fas fa-user"></i> Área do Servidor</a></li>
+                    <li><a href="https://diariooficial.prefeitura.sp.gov.br/md_epubli_controlador.php?acao=inicio"><i class="fas fa-newspaper"></i> Diário Oficial</a></li>
+                    <li><a href="https://prefeitura.sp.gov.br/web/controladoria_geral/noticias"><i class="fas fa-bullhorn"></i> Notícias</a></li>
+                     <li><a href="https://clic.prefeitura.sp.gov.br/"><i class="fas fa-user"></i> Área do Servidor</a></li>
                 </ul>
             </div>
             <div class="footer-section">
@@ -1965,20 +1957,28 @@
             });
         });
 
-        // Simulate user login
-        const userNames = ['Marilia', 'Tiago', 'Tonys', 'Ana Clara'];
-        const randomUser = userNames[Math.floor(Math.random() * userNames.length)];
-        document.getElementById('userName').textContent = randomUser;
-        document.getElementById('welcomeUserName').textContent = randomUser;
-        document.getElementById('userAvatar').textContent = randomUser.charAt(0);
-        
-        const avatarColors = {
-            'Marilia': 'linear-gradient(135deg, #ff6b6b, #ff9e9e)',
-            'Tiago': 'linear-gradient(135deg, #4d94ff, #80b3ff)',
-            'Tonys': 'linear-gradient(135deg, #00a896, #00c6b3)',
-            'Ana Clara': 'linear-gradient(135deg, #9d4edd, #c77dff)'
-        };
-        document.querySelector('.user-avatar').style.background = avatarColors[randomUser];
+        // Sector Accordion
+        document.querySelectorAll('.sector-header').forEach(header => {
+            header.addEventListener('click', () => {
+                const accordion = header.parentElement;
+                const content = accordion.querySelector('.sector-content');
+                const isActive = header.classList.contains('active');
+                
+                // Close all other accordions
+                document.querySelectorAll('.sector-header').forEach(h => {
+                    h.classList.remove('active');
+                });
+                document.querySelectorAll('.sector-content').forEach(c => {
+                    c.classList.remove('active');
+                });
+                
+                // Open clicked accordion if it wasn't active
+                if (!isActive) {
+                    header.classList.add('active');
+                    content.classList.add('active');
+                }
+            });
+        });
 
         // Animate cards on load
         document.addEventListener('DOMContentLoaded', () => {
@@ -1997,7 +1997,7 @@
         // Contact search functionality
         const contactSearchInput = document.querySelector('.contact-search input');
         const allContactItems = document.querySelectorAll('.contact-list .contact-item');
-        const allDividers = document.querySelectorAll('.contact-list .sector-divider');
+        const allAccordions = document.querySelectorAll('.sector-accordion');
 
         contactSearchInput.addEventListener('input', function() {
             const searchTerm = this.value.toLowerCase().trim();
@@ -2007,17 +2007,28 @@
                 item.style.display = text.includes(searchTerm) ? 'flex' : 'none';
             });
 
-            allDividers.forEach(divider => {
-                let nextElement = divider.nextElementSibling;
+            allAccordions.forEach(accordion => {
+                const content = accordion.querySelector('.sector-content');
+                const items = content.querySelectorAll('.contact-item');
                 let hasVisibleItem = false;
-                while (nextElement && !nextElement.classList.contains('sector-divider')) {
-                    if (nextElement.style.display !== 'none') {
+                
+                items.forEach(item => {
+                    if (item.style.display !== 'none') {
                         hasVisibleItem = true;
-                        break;
                     }
-                    nextElement = nextElement.nextElementSibling;
+                });
+                
+                accordion.style.display = hasVisibleItem ? 'block' : 'none';
+                
+                // Auto-expand accordion if search term is present
+                if (searchTerm && hasVisibleItem) {
+                    accordion.querySelector('.sector-header').classList.add('active');
+                    content.classList.add('active');
+                } else if (!searchTerm) {
+                    // Close all accordions when search is cleared
+                    accordion.querySelector('.sector-header').classList.remove('active');
+                    content.classList.remove('active');
                 }
-                divider.style.display = hasVisibleItem ? 'block' : 'none';
             });
         });
     </script>
