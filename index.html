@@ -289,10 +289,14 @@
             padding: 24px;
         }
 
+        #quick-actions-card-body {
+            background-color: var(--light);
+        }
+
         /* Welcome Section Moderna */
         .welcome-section {
             background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-            color: white;
+            color: rgb(255, 255, 255);
             border-radius: var(--border-radius);
             padding: 32px;
             margin-bottom: 32px;
@@ -692,6 +696,22 @@
             transform: scale(1.1);
         }
 
+        .sector-divider {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--primary);
+            padding: 12px 16px;
+            background: rgba(0, 102, 204, 0.05);
+            border-radius: var(--border-radius-sm);
+            margin-top: 20px;
+            margin-bottom: 12px;
+            border-left: 3px solid var(--primary);
+        }
+        
+        .sector-divider:first-child {
+            margin-top: 0;
+        }
+
         /* FAQ Moderna */
         .faq-list {
             display: flex;
@@ -866,7 +886,6 @@
     </style>
 </head>
 <body>
-    <!-- Header -->
     <header class="header">
         <div class="header-container">
             <div class="logo">
@@ -894,7 +913,6 @@
         </div>
     </header>
 
-    <!-- Navigation -->
     <nav class="nav">
         <div class="nav-container">
             <ul class="nav-menu">
@@ -908,11 +926,8 @@
         </div>
     </nav>
 
-    <!-- Main Content -->
     <div class="main-container">
-        <!-- Left Column -->
         <div class="left-column">
-            <!-- Welcome Section -->
             <div class="welcome-section">
                 <div class="welcome-content">
                     <h2>Bem-vindo(a), <span id="welcomeUserName">Marilia</span>!</h2>
@@ -920,16 +935,19 @@
                 </div>
             </div>
 
-            <!-- Quick Actions -->
             <div class="card">
                 <div class="card-header">
                     <h2><i class="fas fa-bolt"></i> Ações Rápidas</h2>
                 </div>
-                <div class="card-body">
+                <div class="card-body" id="quick-actions-card-body">
                     <div class="quick-actions">
                         <a href="#" class="action-btn">
                             <i class="fas fa-newspaper"></i>
                             <span>Diário Oficial</span>
+                        </a>
+                        <a href="#" class="action-btn">
+                            <i class="fas fa-rss"></i>
+                            <span>Clipping de Notícias</span>
                         </a>
                         <a href="#" class="action-btn">
                             <i class="fas fa-ticket-alt"></i>
@@ -979,7 +997,6 @@
                 </div>
             </div>
 
-            <!-- News Section -->
             <div class="card">
                 <div class="card-header">
                     <h2><i class="fas fa-newspaper"></i> Notícias e Comunicados</h2>
@@ -1035,9 +1052,7 @@
             </div>
         </div>
 
-        <!-- Right Column -->
         <div class="right-column">
-            <!-- Room Reservations -->
             <div class="card">
                 <div class="card-header">
                     <h2><i class="far fa-calendar-alt"></i> Reservas de Salas</h2>
@@ -1085,7 +1100,6 @@
                 </div>
             </div>
 
-            <!-- Contact List -->
             <div class="card">
                 <div class="card-header">
                     <h2><i class="fas fa-address-book"></i> Lista de Telefones</h2>
@@ -1096,7 +1110,7 @@
                         <input type="text" placeholder="Pesquisar por nome, telefone, setor ou unidade...">
                     </div>
                     <div class="contact-list">
-                        <!-- Auditoria -->
+                        <div class="sector-divider">Auditoria</div>
                         <div class="contact-item">
                             <div class="contact-avatar">P</div>
                             <div class="contact-info">
@@ -1109,7 +1123,6 @@
                                 <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
                             </div>
                         </div>
-                        
                         <div class="contact-item">
                             <div class="contact-avatar">EP</div>
                             <div class="contact-info">
@@ -1122,7 +1135,6 @@
                                 <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
                             </div>
                         </div>
-                        
                         <div class="contact-item">
                             <div class="contact-avatar">A</div>
                             <div class="contact-info">
@@ -1136,7 +1148,7 @@
                             </div>
                         </div>
 
-                        <!-- CAF -->
+                        <div class="sector-divider">CAF</div>
                         <div class="contact-item">
                             <div class="contact-avatar">F</div>
                             <div class="contact-info">
@@ -1149,7 +1161,6 @@
                                 <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
                             </div>
                         </div>
-                        
                         <div class="contact-item">
                             <div class="contact-avatar">AP</div>
                             <div class="contact-info">
@@ -1162,7 +1173,6 @@
                                 <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
                             </div>
                         </div>
-                        
                         <div class="contact-item">
                             <div class="contact-avatar">K</div>
                             <div class="contact-info">
@@ -1175,7 +1185,6 @@
                                 <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
                             </div>
                         </div>
-                        
                         <div class="contact-item">
                             <div class="contact-avatar">R</div>
                             <div class="contact-info">
@@ -1188,7 +1197,6 @@
                                 <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
                             </div>
                         </div>
-                        
                         <div class="contact-item">
                             <div class="contact-avatar">A</div>
                             <div class="contact-info">
@@ -1201,7 +1209,6 @@
                                 <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
                             </div>
                         </div>
-                        
                         <div class="contact-item">
                             <div class="contact-avatar">M</div>
                             <div class="contact-info">
@@ -1214,7 +1221,6 @@
                                 <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
                             </div>
                         </div>
-                        
                         <div class="contact-item">
                             <div class="contact-avatar">BL</div>
                             <div class="contact-info">
@@ -1227,7 +1233,6 @@
                                 <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
                             </div>
                         </div>
-                        
                         <div class="contact-item">
                             <div class="contact-avatar">F</div>
                             <div class="contact-info">
@@ -1240,7 +1245,6 @@
                                 <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
                             </div>
                         </div>
-                        
                         <div class="contact-item">
                             <div class="contact-avatar">E</div>
                             <div class="contact-info">
@@ -1253,7 +1257,6 @@
                                 <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
                             </div>
                         </div>
-                        
                         <div class="contact-item">
                             <div class="contact-avatar">L</div>
                             <div class="contact-info">
@@ -1266,7 +1269,6 @@
                                 <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
                             </div>
                         </div>
-                        
                         <div class="contact-item">
                             <div class="contact-avatar">F</div>
                             <div class="contact-info">
@@ -1279,7 +1281,6 @@
                                 <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
                             </div>
                         </div>
-                        
                         <div class="contact-item">
                             <div class="contact-avatar">AE</div>
                             <div class="contact-info">
@@ -1292,7 +1293,6 @@
                                 <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
                             </div>
                         </div>
-                        
                         <div class="contact-item">
                             <div class="contact-avatar">F</div>
                             <div class="contact-info">
@@ -1305,7 +1305,6 @@
                                 <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
                             </div>
                         </div>
-                        
                         <div class="contact-item">
                             <div class="contact-avatar">V</div>
                             <div class="contact-info">
@@ -1318,7 +1317,6 @@
                                 <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
                             </div>
                         </div>
-                        
                         <div class="contact-item">
                             <div class="contact-avatar">JG</div>
                             <div class="contact-info">
@@ -1331,7 +1329,6 @@
                                 <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
                             </div>
                         </div>
-                        
                         <div class="contact-item">
                             <div class="contact-avatar">E</div>
                             <div class="contact-info">
@@ -1344,7 +1341,6 @@
                                 <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
                             </div>
                         </div>
-                        
                         <div class="contact-item">
                             <div class="contact-avatar">M</div>
                             <div class="contact-info">
@@ -1357,7 +1353,6 @@
                                 <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
                             </div>
                         </div>
-                        
                         <div class="contact-item">
                             <div class="contact-avatar">A</div>
                             <div class="contact-info">
@@ -1370,7 +1365,6 @@
                                 <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
                             </div>
                         </div>
-                        
                         <div class="contact-item">
                             <div class="contact-avatar">J</div>
                             <div class="contact-info">
@@ -1383,7 +1377,6 @@
                                 <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
                             </div>
                         </div>
-                        
                         <div class="contact-item">
                             <div class="contact-avatar">M</div>
                             <div class="contact-info">
@@ -1396,7 +1389,6 @@
                                 <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
                             </div>
                         </div>
-                        
                         <div class="contact-item">
                             <div class="contact-avatar">R</div>
                             <div class="contact-info">
@@ -1409,7 +1401,6 @@
                                 <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
                             </div>
                         </div>
-                        
                         <div class="contact-item">
                             <div class="contact-avatar">PV</div>
                             <div class="contact-info">
@@ -1423,7 +1414,7 @@
                             </div>
                         </div>
 
-                        <!-- COPI -->
+                        <div class="sector-divider">COPI</div>
                         <div class="contact-item">
                             <div class="contact-avatar">BC</div>
                             <div class="contact-info">
@@ -1436,7 +1427,6 @@
                                 <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
                             </div>
                         </div>
-                        
                         <div class="contact-item">
                             <div class="contact-avatar">M</div>
                             <div class="contact-info">
@@ -1449,7 +1439,6 @@
                                 <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
                             </div>
                         </div>
-                        
                         <div class="contact-item">
                             <div class="contact-avatar">J</div>
                             <div class="contact-info">
@@ -1462,7 +1451,6 @@
                                 <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
                             </div>
                         </div>
-                        
                         <div class="contact-item">
                             <div class="contact-avatar">BJ</div>
                             <div class="contact-info">
@@ -1475,7 +1463,6 @@
                                 <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
                             </div>
                         </div>
-                        
                         <div class="contact-item">
                             <div class="contact-avatar">GC</div>
                             <div class="contact-info">
@@ -1488,7 +1475,6 @@
                                 <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
                             </div>
                         </div>
-                        
                         <div class="contact-item">
                             <div class="contact-avatar">LF</div>
                             <div class="contact-info">
@@ -1502,7 +1488,7 @@
                             </div>
                         </div>
 
-                        <!-- Corregedoria -->
+                        <div class="sector-divider">Corregedoria</div>
                         <div class="contact-item">
                             <div class="contact-avatar">C</div>
                             <div class="contact-info">
@@ -1515,7 +1501,6 @@
                                 <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
                             </div>
                         </div>
-                        
                         <div class="contact-item">
                             <div class="contact-avatar">WC</div>
                             <div class="contact-info">
@@ -1528,7 +1513,6 @@
                                 <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
                             </div>
                         </div>
-                        
                         <div class="contact-item">
                             <div class="contact-avatar">MB</div>
                             <div class="contact-info">
@@ -1541,7 +1525,6 @@
                                 <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
                             </div>
                         </div>
-                        
                         <div class="contact-item">
                             <div class="contact-avatar">E</div>
                             <div class="contact-info">
@@ -1554,7 +1537,6 @@
                                 <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
                             </div>
                         </div>
-                        
                         <div class="contact-item">
                             <div class="contact-avatar">DRB</div>
                             <div class="contact-info">
@@ -1567,7 +1549,6 @@
                                 <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
                             </div>
                         </div>
-                        
                         <div class="contact-item">
                             <div class="contact-avatar">OJ</div>
                             <div class="contact-info">
@@ -1581,7 +1562,7 @@
                             </div>
                         </div>
 
-                        <!-- Gabinete -->
+                        <div class="sector-divider">Gabinete</div>
                         <div class="contact-item">
                             <div class="contact-avatar">D</div>
                             <div class="contact-info">
@@ -1594,7 +1575,6 @@
                                 <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
                             </div>
                         </div>
-                        
                         <div class="contact-item">
                             <div class="contact-avatar">T</div>
                             <div class="contact-info">
@@ -1607,7 +1587,6 @@
                                 <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
                             </div>
                         </div>
-                        
                         <div class="contact-item">
                             <div class="contact-avatar">L</div>
                             <div class="contact-info">
@@ -1620,7 +1599,6 @@
                                 <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
                             </div>
                         </div>
-                        
                         <div class="contact-item">
                             <div class="contact-avatar">N</div>
                             <div class="contact-info">
@@ -1633,7 +1611,6 @@
                                 <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
                             </div>
                         </div>
-                        
                         <div class="contact-item">
                             <div class="contact-avatar">G</div>
                             <div class="contact-info">
@@ -1646,7 +1623,6 @@
                                 <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
                             </div>
                         </div>
-                        
                         <div class="contact-item">
                             <div class="contact-avatar">M</div>
                             <div class="contact-info">
@@ -1659,7 +1635,6 @@
                                 <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
                             </div>
                         </div>
-                        
                         <div class="contact-item">
                             <div class="contact-avatar">S</div>
                             <div class="contact-info">
@@ -1672,7 +1647,6 @@
                                 <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
                             </div>
                         </div>
-                        
                         <div class="contact-item">
                             <div class="contact-avatar">H</div>
                             <div class="contact-info">
@@ -1686,6 +1660,7 @@
                             </div>
                         </div>
                         
+                        <div class="sector-divider">Gabinete • CPD</div>
                         <div class="contact-item">
                             <div class="contact-avatar">JV</div>
                             <div class="contact-info">
@@ -1698,7 +1673,6 @@
                                 <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
                             </div>
                         </div>
-                        
                         <div class="contact-item">
                             <div class="contact-avatar">G</div>
                             <div class="contact-info">
@@ -1711,7 +1685,6 @@
                                 <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
                             </div>
                         </div>
-                        
                         <div class="contact-item">
                             <div class="contact-avatar">MV</div>
                             <div class="contact-info">
@@ -1724,7 +1697,6 @@
                                 <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
                             </div>
                         </div>
-                        
                         <div class="contact-item">
                             <div class="contact-avatar">M</div>
                             <div class="contact-info">
@@ -1737,20 +1709,8 @@
                                 <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
                             </div>
                         </div>
-                        
-                        <div class="contact-item">
-                            <div class="contact-avatar">A</div>
-                            <div class="contact-info">
-                                <h3>APRI</h3>
-                                <p>Gabinete • APRI</p>
-                                <p>3113-8247</p>
-                            </div>
-                            <div class="contact-actions">
-                                <a href="#" class="contact-btn"><i class="fas fa-phone"></i></a>
-                                <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
-                            </div>
-                        </div>
-                        
+
+                        <div class="sector-divider">Gabinete • ASCOM</div>
                         <div class="contact-item">
                             <div class="contact-avatar">W</div>
                             <div class="contact-info">
@@ -1763,7 +1723,6 @@
                                 <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
                             </div>
                         </div>
-                        
                         <div class="contact-item">
                             <div class="contact-avatar">T</div>
                             <div class="contact-info">
@@ -1776,72 +1735,8 @@
                                 <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
                             </div>
                         </div>
-                        
-                        <div class="contact-item">
-                            <div class="contact-avatar">JV</div>
-                            <div class="contact-info">
-                                <h3>João Victor</h3>
-                                <p>Gabinete • Assessoria Técnica</p>
-                                <p>3113-8227</p>
-                            </div>
-                            <div class="contact-actions">
-                                <a href="#" class="contact-btn"><i class="fas fa-phone"></i></a>
-                                <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
-                            </div>
-                        </div>
-                        
-                        <div class="contact-item">
-                            <div class="contact-avatar">V</div>
-                            <div class="contact-info">
-                                <h3>Victor</h3>
-                                <p>Gabinete • Assessoria Técnica</p>
-                                <p>3113-8289</p>
-                            </div>
-                            <div class="contact-actions">
-                                <a href="#" class="contact-btn"><i class="fas fa-phone"></i></a>
-                                <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
-                            </div>
-                        </div>
-                        
-                        <div class="contact-item">
-                            <div class="contact-avatar">W</div>
-                            <div class="contact-info">
-                                <h3>Wagner</h3>
-                                <p>Gabinete • Assessoria Técnica</p>
-                                <p>3113-8250</p>
-                            </div>
-                            <div class="contact-actions">
-                                <a href="#" class="contact-btn"><i class="fas fa-phone"></i></a>
-                                <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
-                            </div>
-                        </div>
-                        
-                        <div class="contact-item">
-                            <div class="contact-avatar">LPR</div>
-                            <div class="contact-info">
-                                <h3>Luis Felipe / Patricia / Rafael</h3>
-                                <p>Gabinete • Assessoria Técnica</p>
-                                <p>3113-8231</p>
-                            </div>
-                            <div class="contact-actions">
-                                <a href="#" class="contact-btn"><i class="fas fa-phone"></i></a>
-                                <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
-                            </div>
-                        </div>
-                        
-                        <div class="contact-item">
-                            <div class="contact-avatar">WCL</div>
-                            <div class="contact-info">
-                                <h3>Wagner / Carolina / Luiz Felipe</h3>
-                                <p>Gabinete • CMAI</p>
-                                <p>3113-8250</p>
-                            </div>
-                            <div class="contact-actions">
-                                <a href="#" class="contact-btn"><i class="fas fa-phone"></i></a>
-                                <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
-                            </div>
-                        </div>
-                        
+
+                        <div class="sector-divider">Gabinete • CODUSP</div>
                         <div class="contact-item">
                             <div class="contact-avatar">G</div>
                             <div class="contact-info">
@@ -1854,7 +1749,6 @@
                                 <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
                             </div>
                         </div>
-                        
                         <div class="contact-item">
                             <div class="contact-avatar">K</div>
                             <div class="contact-info">
@@ -1867,7 +1761,6 @@
                                 <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
                             </div>
                         </div>
-                        
                         <div class="contact-item">
                             <div class="contact-avatar">G</div>
                             <div class="contact-info">
@@ -1881,7 +1774,7 @@
                             </div>
                         </div>
 
-                        <!-- Ouvidoria -->
+                        <div class="sector-divider">Ouvidoria</div>
                         <div class="contact-item">
                             <div class="contact-avatar">ML</div>
                             <div class="contact-info">
@@ -1894,7 +1787,6 @@
                                 <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
                             </div>
                         </div>
-                        
                         <div class="contact-item">
                             <div class="contact-avatar">D</div>
                             <div class="contact-info">
@@ -1907,7 +1799,6 @@
                                 <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
                             </div>
                         </div>
-                        
                         <div class="contact-item">
                             <div class="contact-avatar">F</div>
                             <div class="contact-info">
@@ -1920,7 +1811,6 @@
                                 <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
                             </div>
                         </div>
-                        
                         <div class="contact-item">
                             <div class="contact-avatar">CG</div>
                             <div class="contact-info">
@@ -1933,7 +1823,6 @@
                                 <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
                             </div>
                         </div>
-                        
                         <div class="contact-item">
                             <div class="contact-avatar">LC</div>
                             <div class="contact-info">
@@ -1946,7 +1835,6 @@
                                 <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
                             </div>
                         </div>
-                        
                         <div class="contact-item">
                             <div class="contact-avatar">LL</div>
                             <div class="contact-info">
@@ -1959,7 +1847,6 @@
                                 <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
                             </div>
                         </div>
-                        
                         <div class="contact-item">
                             <div class="contact-avatar">LB</div>
                             <div class="contact-info">
@@ -1972,7 +1859,6 @@
                                 <a href="#" class="contact-btn"><i class="fas fa-envelope"></i></a>
                             </div>
                         </div>
-                        
                         <div class="contact-item">
                             <div class="contact-avatar">SM</div>
                             <div class="contact-info">
@@ -1989,7 +1875,6 @@
                 </div>
             </div>
 
-            <!-- FAQ -->
             <div class="card">
                 <div class="card-header">
                     <h2><i class="fas fa-question-circle"></i> Suporte TI</h2>
@@ -2029,7 +1914,6 @@
         </div>
     </div>
 
-    <!-- Footer -->
     <footer class="footer">
         <div class="footer-container">
             <div class="footer-section">
@@ -2071,12 +1955,10 @@
                 const item = question.parentElement;
                 const isActive = item.classList.contains('active');
                 
-                // Close all items
                 document.querySelectorAll('.faq-item').forEach(faq => {
                     faq.classList.remove('active');
                 });
                 
-                // Open clicked item if it wasn't active
                 if (!isActive) {
                     item.classList.add('active');
                 }
@@ -2086,27 +1968,24 @@
         // Simulate user login
         const userNames = ['Marilia', 'Tiago', 'Tonys', 'Ana Clara'];
         const randomUser = userNames[Math.floor(Math.random() * userNames.length)];
-        document.querySelector('.user-name').textContent = randomUser;
-        document.querySelector('#welcomeUserName').textContent = randomUser;
-        document.querySelector('.user-avatar').textContent = randomUser.charAt(0);
+        document.getElementById('userName').textContent = randomUser;
+        document.getElementById('welcomeUserName').textContent = randomUser;
+        document.getElementById('userAvatar').textContent = randomUser.charAt(0);
         
-        // Update avatar color based on user
         const avatarColors = {
             'Marilia': 'linear-gradient(135deg, #ff6b6b, #ff9e9e)',
             'Tiago': 'linear-gradient(135deg, #4d94ff, #80b3ff)',
             'Tonys': 'linear-gradient(135deg, #00a896, #00c6b3)',
             'Ana Clara': 'linear-gradient(135deg, #9d4edd, #c77dff)'
         };
-        
         document.querySelector('.user-avatar').style.background = avatarColors[randomUser];
 
-        // Add subtle animations to cards on load
+        // Animate cards on load
         document.addEventListener('DOMContentLoaded', () => {
             const cards = document.querySelectorAll('.card');
             cards.forEach((card, index) => {
                 card.style.opacity = '0';
                 card.style.transform = 'translateY(20px)';
-                
                 setTimeout(() => {
                     card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
                     card.style.opacity = '1';
@@ -2115,20 +1994,30 @@
             });
         });
 
-        // Search functionality for contacts
-        const contactSearch = document.querySelector('.contact-search input');
-        const contactItems = document.querySelectorAll('.contact-item');
-        
-        contactSearch.addEventListener('input', function() {
-            const searchTerm = this.value.toLowerCase();
-            
-            contactItems.forEach(item => {
+        // Contact search functionality
+        const contactSearchInput = document.querySelector('.contact-search input');
+        const allContactItems = document.querySelectorAll('.contact-list .contact-item');
+        const allDividers = document.querySelectorAll('.contact-list .sector-divider');
+
+        contactSearchInput.addEventListener('input', function() {
+            const searchTerm = this.value.toLowerCase().trim();
+
+            allContactItems.forEach(item => {
                 const text = item.textContent.toLowerCase();
-                if (text.includes(searchTerm)) {
-                    item.style.display = 'flex';
-                } else {
-                    item.style.display = 'none';
+                item.style.display = text.includes(searchTerm) ? 'flex' : 'none';
+            });
+
+            allDividers.forEach(divider => {
+                let nextElement = divider.nextElementSibling;
+                let hasVisibleItem = false;
+                while (nextElement && !nextElement.classList.contains('sector-divider')) {
+                    if (nextElement.style.display !== 'none') {
+                        hasVisibleItem = true;
+                        break;
+                    }
+                    nextElement = nextElement.nextElementSibling;
                 }
+                divider.style.display = hasVisibleItem ? 'block' : 'none';
             });
         });
     </script>
